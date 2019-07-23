@@ -9,7 +9,7 @@ class Seller(models.Model):
     nickname = models.CharField(max_length=32, verbose_name="昵称", null=True, blank=True)
     phone = models.CharField(max_length=32, verbose_name="电话", null=True, blank=True)
     email = models.EmailField(verbose_name="邮箱", null=True, blank=True)
-    address = models.CharField(max_length=32, verbose_name="地址", null=True, blank=True)
+    address = models.CharField(max_length=300, verbose_name="地址", null=True, blank=True)
     picture = models.ImageField(upload_to="store/images", verbose_name="用户头像", null=True, blank=True)
     card_id = models.CharField(max_length=32, verbose_name="身份证", null=True, blank=True)
 
@@ -25,12 +25,12 @@ class StoreType(models.Model):
 class Store(models.Model):
     store_name = models.CharField(max_length=32, verbose_name="店铺名称")
     store_description = models.TextField(verbose_name="店铺描述")
-    store_address = models.CharField(max_length=32, verbose_name="店铺地址")
+    store_address = models.CharField(max_length=300, verbose_name="店铺地址")
     store_logo = models.ImageField(upload_to="store/images",verbose_name="店铺logo")
     store_phone = models.CharField(max_length=32, verbose_name="店铺电话")
     store_money = models.FloatField(verbose_name="店铺注册资金")
 
-    user_id = models.ForeignKey(to=Seller, on_delete=models.CASCADE, verbose_name="店铺主人")
+    user = models.ForeignKey(to=Seller, on_delete=models.CASCADE, verbose_name="店铺主人")
     type = models.ManyToManyField(to=StoreType, verbose_name="店铺类型")
 
 # 商品
@@ -51,3 +51,10 @@ class Goods_img(models.Model):
     img_description = models.TextField(verbose_name="图片描述")
 
     goods_id = models.ForeignKey(to=Goods, on_delete=models.CASCADE, verbose_name="商品id")
+
+class Area(models.Model):
+    atitle = models.CharField(max_length=30)
+    aparent = models.ForeignKey("self", null=True, blank=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.atitle
