@@ -1,0 +1,62 @@
+{% extends 'store/base.html' %}
+
+{% block title %}
+    <title>{{ goods.goods_name }}&nbsp;详情</title>
+{% endblock %}
+{% block style %}
+    <script src="/static/ckeditor/ckeditor/ckeditor.js"></script>
+{% endblock %}
+{% block content %}
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <form class="user" method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table class="table">
+                <tr>
+                    <td rowspan="3">
+                        <img style="width: 200px;height: 200px" src="/static/{{ goods.goods_images }}" alt="">
+                        <input class="form-control-file" type="file" name="goods_images">
+                    </td>
+                    <td><label>商品名称：</label></td>
+                    <td colspan="3"><input class="form-control" type="text" name="goods_name" value="{{ goods.goods_name }}"></td>
+                </tr>
+                <tr class="form-group">
+                    <td><label>商品价格：</label></td>
+                    <td><input class="form-control" type="text" name="goods_price" value="{{ goods.goods_price }}"></td>
+                    <td><label>商品库存：</label></td>
+                    <td><input class="form-control" type="text" name="goods_number" value="{{ goods.goods_number }}"></td>
+                </tr>
+                <tr class="form-group">
+                    <td><label>出厂日期：</label></td>
+                    <td><input class="form-control" type="text" name="goods_date" value="{{ goods.goods_date|date:"Y-m-d" }}"></td>
+                    <td><label>保质期(月)：</label></td>
+                    <td><input class="form-control" type="text" name="goods_safeDate" value="{{ goods.goods_safeDate }}"></td>
+                </tr>
+                <tr class="form-group">
+                    <th style="text-align: center"><label>上架商铺</label></th>
+                    <th colspan="4">
+                        {% for i in store %}
+                            <input type="checkbox" name="store_type" value="{{ i.id }}">{{ i.store_name }}&nbsp;&nbsp;
+                        {% endfor %}
+                    </th>
+                </tr>
+                <tr class="form-group">
+                    <th colspan="5" style="text-align: center"><label>商品详情</label></th>
+                </tr>
+                <tr class="form-group">
+                    <td colspan="5">
+                        <textarea class="form-control" name="goods_description">{{ goods.goods_description }}</textarea>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" class="btn btn-primary btn-block" value="保存修改">
+        </form>
+    </div>
+    <!-- /.container-fluid -->
+    {% block script %}
+        <script type="text/javascript">
+            CKEDITOR.replace("goods_description", {uiColor:"#9AB8F3"})
+        </script>
+    {% endblock %}
+{% endblock %}
+

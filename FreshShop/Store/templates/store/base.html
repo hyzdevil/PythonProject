@@ -18,6 +18,8 @@
         <link href="/static/store/css/sb-admin-2.min.css" rel="stylesheet">
         <script type="text/javascript" src="/static/store/js/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="/static/store/js/vue.js"></script>
+        {% block style %}
+        {% endblock %}
     </head>
     <body id="page-top">
         <!-- Page Wrapper -->
@@ -37,33 +39,32 @@
                 <!-- Divider -->
                 <hr class="sidebar-divider my-0">
 
-                <!-- Nav Item - Dashboard -->
-                <li class="nav-item">
-                    <a class="nav-link" href="/store/index/">
-                        <i class="fas fa-fw fa-cog"></i>
-                        <span>首页</span>
-                    </a>
-                </li>
-
-                <!-- Divider -->
-                <hr class="sidebar-divider my-0">
-
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                        <i class="fas fa-fw fa-cog"></i>
-                        <span>商品管理</span>
-                    </a>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">商品管理：</h6>
-                            <a class="collapse-item" href="/store/add_goods/">商品添加</a>
-                            <a class="collapse-item" href="/store/list_goods/">商品列表</a>
+                {% if request.session.user_id|has_store %}
+                    <!-- Nav Item - Dashboard -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/store/index/">
+                            <i class="fas fa-fw fa-cog"></i>
+                            <span>店铺管理</span>
+                        </a>
+                    </li>
+                    <!-- Divider -->
+                    <hr class="sidebar-divider my-0">
+                    <!-- Nav Item - Pages Collapse Menu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-cog"></i>
+                            <span>商品管理</span>
+                        </a>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">商品管理：</h6>
+                                <a class="collapse-item" href="/store/add_goods/">商品添加</a>
+                                <a class="collapse-item" href="/store/list_goods/">商品列表</a>
+                            </div>
                         </div>
-                    </div>
-                </li>
-
-                <hr class="sidebar-divider my-0">
+                    </li>
+                    <hr class="sidebar-divider my-0">
+                {% endif %}
 
                 <li class="nav-item">
                     <a class="nav-link" href="/store/register_store/">
@@ -159,10 +160,8 @@
                         <!-- Begin Page Content -->
                     {% block content %}
                         <div class="container-fluid">
-
-                        <!-- Page Heading -->
-                                <h1 class="h3 mb-4 text-gray-800">空白页</h1>
-
+                            <!-- Page Heading -->
+                            <h1 class="h3 mb-4 text-gray-800">空白页</h1>
                         </div>
                     {% endblock %}
                         <!-- /.container-fluid -->

@@ -42,6 +42,7 @@ class Goods(models.Model):
     goods_description = models.TextField(verbose_name="商品描述")
     goods_date = models.DateField(verbose_name="出厂日期")
     goods_safeDate = models.IntegerField(verbose_name="保质期")
+    isdelete = models.BooleanField(verbose_name="是否下架", default=False)
 
     store_id = models.ManyToManyField(to=Store, verbose_name="商品店铺")
 

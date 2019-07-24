@@ -1,0 +1,49 @@
+{% extends 'store/base.html' %}
+
+{% block title %}
+    <title>{{ goods.goods_name }}&nbsp;详情</title>
+{% endblock %}
+
+{% block content %}
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <table class="table">
+            <tr class="form-group">
+                <td rowspan="3">
+                    <img style="width: 200px;height: 200px" src="/static/{{ goods.goods_images }}">
+                </td>
+                <td><label>商品名称：</label></td>
+                <td colspan="3">{{ goods.goods_name }}</td>
+            </tr>
+            <tr class="form-group">
+                <td><label>商品价格：</label></td>
+                <td>{{ goods.goods_price }}</td>
+                <td><label>商品库存：</label></td>
+                <td>{{ goods.goods_number }}</td>
+            </tr>
+            <tr class="form-group">
+                <td><label>出厂日期：</label></td>
+                <td>{{ goods.goods_date|date:"Y-m-d" }}</td>
+                <td><label>保质期(月)：</label></td>
+                <td>{{ goods.goods_safeDate }}</td>
+            </tr>
+            <tr class="form-group">
+                    <th style="text-align: center"><label>上架商铺</label></th>
+                    <th colspan="4">
+                        {% for i in store %}
+                            {{ i.store_name }}&nbsp;&nbsp;
+                        {% endfor %}
+                    </th>
+                </tr>
+            <tr class="form-group">
+                <th colspan="5" style="text-align: center"><label>商品详情</label></th>
+            </tr>
+            <tr class="form-group">
+                <td colspan="5">{{ goods.goods_description|safe }}</td>
+            </tr>
+        </table>
+        <a href="/store/update_goods/{{ goods.id }}/" class="btn btn-primary btn-block">修改商品信息</a>
+    </div>
+    <!-- /.container-fluid -->
+{% endblock %}
+

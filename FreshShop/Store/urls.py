@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path,re_path
 from Store import views
 
 urlpatterns = [
@@ -12,4 +12,6 @@ urlpatterns = [
     path('getDistrict/', views.getDistrict),
     path('add_goods/', views.add_goods),
     path('list_goods/', views.list_goods),
+    re_path(r'^detail_goods/(?P<goods_id>\d+)/$', views.goods_detail),
+    re_path(r'^update_goods/(?P<goods_id>\d+)/$', views.update_goods),
 ]

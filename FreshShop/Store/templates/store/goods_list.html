@@ -1,4 +1,5 @@
 {% extends 'store/base.html' %}
+{% load setJsonTag %}
 
 {% block title %}
     <title>商品列表</title>
@@ -18,19 +19,25 @@
                     <th>库存</th>
                     <th>生产日期</th>
                     <th>保质期(月)</th>
+                    <th>上架商铺</th>
                     <th>操作</th>
                 </tr>
             </thead>
             <tbody>
                 {% for goods in page %}
                     <tr>
-                        <td>{{ goods.goods_name }}</td>
+                        <td><a href="/store/detail_goods/{{ goods.id }}/">{{ goods.goods_name }}</td>
                         <td>
                             <input type="text" value="{{ goods.goods_price }}">
                         </td>
                         <td>{{ goods.goods_number }}</td>
                         <td>{{ goods.goods_date|date:"Y-m-d" }}</td>
                         <td>{{ goods.goods_safeDate }}</td>
+                        <td>
+                            {% for store in goods.id|goodsOfstore %}
+                                <p>{{ store.store_name }}</p>
+                            {% endfor %}
+                        </td>
                         <td>
                             <a class="btn btn-warning" href="#">下架</a>
                             <a class="btn btn-danger" href="#">销毁</a>
@@ -48,7 +55,7 @@
                     <ul class="pagination">
                         {% for page in page_range %}
                             <li class="paginate_button page-item">
-                                <a href="#" class="page-link">{{ page }}</a>
+                                <a href="?keyword={{ keywords }}&page_num={{ page }}" class="page-link">{{ page }}</a>
                             </li>
                         {% endfor %}
                     </ul>

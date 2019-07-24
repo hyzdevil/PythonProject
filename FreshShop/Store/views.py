@@ -1,5 +1,5 @@
-import hashlib
 import json
+import hashlib
 
 from django.http import JsonResponse
 from django.core.paginator import Paginator
@@ -37,7 +37,7 @@ def setPassword(password):
     md5 = hashlib.md5()
     md5.update(password.encode())
     return md5.hexdigest()
-
+# 注册
 def register(request):
     result = {"message":""}
     if request.method == "POST":
@@ -61,7 +61,7 @@ def register(request):
         else:
             result["message"] = "注册信息不能为空"
     return render(request, 'store/register.html', locals())
-
+# 登录
 def login(request):
     result = {"message": ""}
     if request.method == "POST":
@@ -74,7 +74,6 @@ def login(request):
                     response = HttpResponseRedirect('/store/index/')
                     response.set_cookie("username", json.dumps(username))
                     request.session["username"] = username
-                    store = Store.objects.filter(user_id=user.id)
                     request.session["user_id"] = user.id
                     return response
                 else:
@@ -84,35 +83,30 @@ def login(request):
         else:
             result["message"] = "登录信息不能为空"
     return render(request, 'store/login.html', locals())
-
+# 登录验证
 def loginValid(fun):
     def inner(request, *args, **kwargs):
         c_name = request.COOKIES.get("username")
-        c_name = json.loads(c_name)
         s_name = request.session.get("username")
         if c_name and s_name:
+            c_name = json.loads(c_name)
             user = Seller.objects.filter(username=c_name).first()
             if user and user.username == c_name:
                 return fun(request, *args, **kwargs)
         return HttpResponseRedirect("/store/login/")
     return inner
-
+# 首页
 @loginValid
 def index(request):
-    # result = {"status":False }
-    # user_id = request.session.get("user_id")
-    # if user_id:
-    #     store = Store.objects.filter(user_id=user_id)
-    #     if store:
-    #         result["status"] = True
     return render(request, 'store/index.html', locals())
-
+# 退出
 def login_out(request):
     response = HttpResponseRedirect("/store/login/")
     response.delete_cookie("username")
     request.session.flush()
     return response
-
+# 注册店铺
+@loginValid
 def register_store(request):
     storeType = StoreType.objects.all()
     if request.method == "POST":
@@ -145,9 +139,11 @@ def register_store(request):
         store.save()
         return HttpResponseRedirect("/store/index/")
     return render(request, "store/register_store.html", {"storeType":storeType})
-
+# 添加商品
+@loginValid
 def add_goods(request):
-    store = Store.objects.all()
+    user_id = request.session.get("user_id")
+    store = Store.objects.filter(user_id=user_id)
     if request.method == "POST":
         goods_name = request.POST.get("goods_name")
         goods_description = request.POST.get("goods_description")
@@ -171,15 +167,54 @@ def add_goods(request):
         goods.save()
         return HttpResponseRedirect("/store/list_goods/")
     return render(request, 'store/add_goods.html', {"store":store})
-
+# 商品列表
+@loginValid
 def list_goods(request):
     keywords = request.GET.get("keywords","")
     page_num = request.GET.get("page_num", 1)
     if keywords:
-        goods_list = Goods.objects.filter(goods_name__contains=keywords)
+        goods_list = Goods.objects.filter(isdelete=False, goods_name__contains=keywords)
     else:
-        goods_list = Goods.objects.all()
+        goods_list = Goods.objects.all(isdelete=False)
     paginator = Paginator(goods_list, 10)
     page = paginator.page(int(page_num))
     page_range = paginator.page_range
     return render(request, 'store/goods_list.html', locals())
+# 商品详情
+@loginValid
+def goods_detail(request, goods_id):
+    user_id = request.session.get("user_id")
+    store = Store.objects.filter(user_id=user_id)
+    goods = Goods.objects.filter(id = goods_id).first()
+    return render(request, 'store/goods_detail.html', locals())
+# 修改商品
+@loginValid
+def update_goods(request, goods_id):
+    user_id = request.session.get("user_id")
+    store = Store.objects.filter(user_id=user_id)
+    goods = Goods.objects.filter(id = goods_id).first()
+    if request.method == "POST":
+        goods_name = request.POST.get("goods_name")
+        goods_description = request.POST.get("goods_description")
+        goods_price = request.POST.get("goods_price")
+        goods_number = request.POST.get("goods_number")
+        goods_images = request.FILES.get("goods_images")
+        goods_date = request.POST.get("goods_date")
+        goods_safeDate = request.POST.get("goods_safeDate")
+        store_type = request.POST.getlist("store_type")
+        goods = Goods.objects.get(id=int(goods_id))
+        goods.goods_name = goods_name
+        goods.goods_description = goods_description
+        goods.goods_price = float(goods_price)
+        goods.goods_number = goods_number
+        goods.goods_date = goods_date
+        goods.goods_safeDate = goods_safeDate
+        if goods_images:
+            goods.goods_images = goods_images
+        goods.save()
+        if store_type:
+            for i in store_type:
+                goods.store_id.add(Store.objects.get(id=i))
+        goods.save()
+        return HttpResponseRedirect("/store/detail_goods/%s/"%goods_id)
+    return render(request, "store/update_goods.html", locals())
