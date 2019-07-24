@@ -39,7 +39,13 @@
                             {% endfor %}
                         </td>
                         <td>
-                            <a class="btn btn-warning" href="#">下架</a>
+                            {% if goods.isdelete %}
+                                <a class="btn btn-warning" href="/store/putaway/{{ goods.id }}/">上架</a>
+                                <a class="btn btn-warning disabled" href="/store/sold_out/{{ goods.id }}/">下架</a>
+                            {% else %}
+                                <a class="btn btn-warning disabled" href="/store/putaway/{{ goods.id }}/">上架</a>
+                                <a class="btn btn-warning" href="/store/sold_out/{{ goods.id }}/">下架</a>
+                            {% endif %}
                             <a class="btn btn-danger" href="#">销毁</a>
                         </td>
                     </tr>

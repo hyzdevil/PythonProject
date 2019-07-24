@@ -1,0 +1,30 @@
+*{padding:0;margin: 0;}
+.yangshi{border: 2px solid #ff0000;}
+#image{width: 500px; height: 300px;}
+#box img{width: 70px; height: 50px;}
+#box{clear: both;}
+#box2{
+    width: 300px;
+    height: 200px;
+    float: left;
+    /*border: 1px solid #ff0000;*/
+    overflow: hidden;
+    /*display: inline-block;*/
+    position: relative;
+}
+.box1{
+    width: 500px;
+    height: 300px;
+    float: left;
+    overflow: hidden;
+    /*display: inline-block;*/
+}
+#box2>img{position: absolute;width: 2000px;height: 1200px;}
+#zhezhao{
+    width: 70px;
+    height: 70px;
+    background: #BC8F8F;
+    opacity: 0.7;
+    display: none;
+    position: absolute;
+}

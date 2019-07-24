@@ -172,10 +172,17 @@ def add_goods(request):
 def list_goods(request):
     keywords = request.GET.get("keywords","")
     page_num = request.GET.get("page_num", 1)
+    store = Store.objects.filter(id=request.session.get("user_id"))
+    goods_list = []
     if keywords:
-        goods_list = Goods.objects.filter(isdelete=False, goods_name__contains=keywords)
+        for i in store:
+            goods = i.goods_set.filter(goods_name__contains=keywords)
+            goods_list += goods
     else:
-        goods_list = Goods.objects.all(isdelete=False)
+        for i in store:
+            goods = i.goods_set.all()
+            goods_list += goods
+    goods_list = list(set(goods_list))
     paginator = Paginator(goods_list, 10)
     page = paginator.page(int(page_num))
     page_range = paginator.page_range
@@ -218,3 +225,18 @@ def update_goods(request, goods_id):
         goods.save()
         return HttpResponseRedirect("/store/detail_goods/%s/"%goods_id)
     return render(request, "store/update_goods.html", locals())
+# 找回密码
+def reset_password(request):
+    return render(request, 'store/forgot_password.html')
+# 下架商品
+def sold_out(request, goods_id):
+    goods = Goods.objects.get(id = goods_id)
+    goods.isdelete = True
+    goods.save()
+    return HttpResponseRedirect("/store/list_goods/")
+# 上架商品
+def putaway(request, goods_id):
+    goods = Goods.objects.get(id=goods_id)
+    goods.isdelete = False
+    goods.save()
+    return HttpResponseRedirect("/store/list_goods/")

@@ -4,7 +4,9 @@
 {% block title %}
     <title>首页</title>
 {% endblock %}
-
+{% block style %}
+    <link href="/static/store/css/index.css" rel="stylesheet">
+{% endblock %}
 {% block content %}
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -96,12 +98,61 @@
         {% else %}
             <h2 class="text-center">你还没有店铺哦，赶紧去注册一个吧！！</h2>
         {% endif %}
-        <figure class="text-center" >
-            <img src="/static/store/images/img11.gif">
-        </figure>
+        <div class="div">
+            <div class="box1">
+                <img src="/static/store/image/timg.jpg" alt="" id="image"/>
+            </div>
+            <div id="box">
+                <img src="/static/store/image/timg.jpg" alt=""/>
+                <img src="/static/store/image/timg1.jpg" alt=""/>
+                <img src="/static/store/image/timg3.jpg" alt=""/>
+                <img src="/static/store/image/timg4.jpg" alt=""/>
+                <img src="/static/store/image/timg5.jpg" alt=""/>
+                <img src="/static/store/image/timg6.jpg" alt=""/>
+                <img src="/static/store/image/timg7.jpg" alt=""/>
+            </div>
+        </div>
     </div>
     <!-- /.container-fluid -->
 {% endblock %}
 
 {% block script %}
+    <script type="text/javascript">
+        $(function () {
+            var i = 1;
+            var time1;
+            $("#box img:eq(0)").addClass("yangshi");
+            function run() {
+                time1 = setInterval(function(){
+                    $("#box>img").removeClass("yangshi");
+                    if(i>$("#box img").length-1){i = 0;}
+                    $("#image").attr("src",$("#box>img:eq("+i+")").attr("src"));
+                    $("#box img:eq("+i+")").addClass("yangshi");
+                    i++;
+                },1000);
+            }
+            $(".box1").mouseover(function () {
+                window.clearInterval(time1);
+            }).mouseout(function () {
+                $("#box2 img").css("display", "none");
+                run();
+            });
+            $("#box img").hover(function () {
+                window.clearInterval(time1);
+                var src = $(this).attr("src");
+                $("#image").attr("src",src);
+                $("#box img").removeClass("yangshi");
+                $(this).addClass("yangshi");
+            },function () {
+                var index = $("#box>img").index($(this));
+                if(i >= $("#box img").length-1){
+                    i = 0;
+                }else {
+                    i = index + 1;
+                }
+                run();
+            });
+            run();
+        })
+    </script>
 {% endblock %}
