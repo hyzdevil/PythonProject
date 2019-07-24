@@ -10,4 +10,6 @@ urlpatterns = [
     path('getProvince/', views.getProvince),
     path('getCity/', views.getCity),
     path('getDistrict/', views.getDistrict),
+    path('add_goods/', views.add_goods),
+    path('list_goods/', views.list_goods),
 ]

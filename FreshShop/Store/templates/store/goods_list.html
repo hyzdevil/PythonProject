@@ -1,0 +1,60 @@
+{% extends 'store/base.html' %}
+
+{% block title %}
+    <title>商品列表</title>
+{% endblock %}
+
+{% block content %}
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">商品列表</h1>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>商品名称</th>
+                    <th>价格(￥)</th>
+                    <th>库存</th>
+                    <th>生产日期</th>
+                    <th>保质期(月)</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for goods in page %}
+                    <tr>
+                        <td>{{ goods.goods_name }}</td>
+                        <td>
+                            <input type="text" value="{{ goods.goods_price }}">
+                        </td>
+                        <td>{{ goods.goods_number }}</td>
+                        <td>{{ goods.goods_date|date:"Y-m-d" }}</td>
+                        <td>{{ goods.goods_safeDate }}</td>
+                        <td>
+                            <a class="btn btn-warning" href="#">下架</a>
+                            <a class="btn btn-danger" href="#">销毁</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-sm-12 col-md-5">
+                <a class="btn btn-primary" href="/store/add_goods/">添加商品</a>
+            </div>
+            <div class="col-sm-12 col-md-7">
+                <div class="dataTables_paginate paging_simple_numbers">
+                    <ul class="pagination">
+                        {% for page in page_range %}
+                            <li class="paginate_button page-item">
+                                <a href="#" class="page-link">{{ page }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+{% endblock %}

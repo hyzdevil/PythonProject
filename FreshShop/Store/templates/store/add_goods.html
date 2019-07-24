@@ -1,0 +1,60 @@
+{% extends 'store/base.html' %}
+
+{% block title %}
+    <title>添加商品</title>
+{% endblock %}
+
+{% block content %}
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">添加商品</h1>
+        </div>
+        <form class="user" method="post" enctype="multipart/form-data" action="/store/add_goods/">
+            {% csrf_token %}
+            <table style="margin: auto">
+                <tr class="form-group">
+                    <td><label>商品名称：</label></td>
+                    <td><input type="text" class="form-control" name="goods_name"></td>
+                </tr>
+                <tr class="form-group">
+                    <td><label>商品描述：</label></td>
+                    <td><input type="text" class="form-control" name="goods_description"></td>
+                </tr>
+                <tr class="form-group">
+                    <td><label>商品价格：</label></td>
+                    <td><input type="text" class="form-control" name="goods_price"></td>
+                </tr>
+                <tr class="form-group">
+                    <td><label>商品库存：</label></td>
+                    <td><input type="number" class="form-control" name="goods_number"></td>
+                </tr>
+                <tr class="form-group">
+                    <td><label>商品图片：</label></td>
+                    <td><input type="file" class="form-control" name="goods_images"></td>
+                </tr>
+                <tr class="form-group">
+                    <td><label>出厂日期：</label></td>
+                    <td><input type="date" class="form-control" name="goods_date"></td>
+                </tr>
+                <tr class="form-group">
+                    <td><label>保质期(月)：</label></td>
+                    <td><input type="number" class="form-control" name="goods_safeDate"></td>
+                </tr>
+                <tr class="form-group">
+                    <td><label>商品店铺：</label></td>
+                    <td>
+                        {% for i in store %}
+                            <input type="checkbox" name="store_type" value="{{ i.id }}">{{ i.store_name }}
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" class="btn btn-primary btn-user btn-block" value="注册"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <!-- /.container-fluid -->
+{% endblock %}
+

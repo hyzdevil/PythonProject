@@ -2,6 +2,7 @@ import hashlib
 import json
 
 from django.http import JsonResponse
+from django.core.paginator import Paginator
 from django.shortcuts import render,HttpResponseRedirect
 
 from Store.models import *
@@ -73,6 +74,7 @@ def login(request):
                     response = HttpResponseRedirect('/store/index/')
                     response.set_cookie("username", json.dumps(username))
                     request.session["username"] = username
+                    store = Store.objects.filter(user_id=user.id)
                     request.session["user_id"] = user.id
                     return response
                 else:
@@ -97,13 +99,13 @@ def loginValid(fun):
 
 @loginValid
 def index(request):
-    result = {"status":False}
-    user_id = request.session.get("user_id")
-    if user_id:
-        store = Store.objects.filter(user_id=user_id)
-        if store:
-            result["status"] = True
-    return render(request, 'store/index.html', {"result":result})
+    # result = {"status":False }
+    # user_id = request.session.get("user_id")
+    # if user_id:
+    #     store = Store.objects.filter(user_id=user_id)
+    #     if store:
+    #         result["status"] = True
+    return render(request, 'store/index.html', locals())
 
 def login_out(request):
     response = HttpResponseRedirect("/store/login/")
@@ -143,3 +145,41 @@ def register_store(request):
         store.save()
         return HttpResponseRedirect("/store/index/")
     return render(request, "store/register_store.html", {"storeType":storeType})
+
+def add_goods(request):
+    store = Store.objects.all()
+    if request.method == "POST":
+        goods_name = request.POST.get("goods_name")
+        goods_description = request.POST.get("goods_description")
+        goods_price = request.POST.get("goods_price")
+        goods_number = request.POST.get("goods_number")
+        goods_images = request.FILES.get("goods_images")
+        goods_date = request.POST.get("goods_date")
+        goods_safeDate = request.POST.get("goods_safeDate")
+        store_type = request.POST.getlist("store_type")
+        goods = Goods()
+        goods.goods_name = goods_name
+        goods.goods_description = goods_description
+        goods.goods_price = float(goods_price)
+        goods.goods_number = goods_number
+        goods.goods_images = goods_images
+        goods.goods_date = goods_date
+        goods.goods_safeDate = goods_safeDate
+        goods.save()
+        for i in store_type:
+            goods.store_id.add(Store.objects.get(id=i))
+        goods.save()
+        return HttpResponseRedirect("/store/list_goods/")
+    return render(request, 'store/add_goods.html', {"store":store})
+
+def list_goods(request):
+    keywords = request.GET.get("keywords","")
+    page_num = request.GET.get("page_num", 1)
+    if keywords:
+        goods_list = Goods.objects.filter(goods_name__contains=keywords)
+    else:
+        goods_list = Goods.objects.all()
+    paginator = Paginator(goods_list, 10)
+    page = paginator.page(int(page_num))
+    page_range = paginator.page_range
+    return render(request, 'store/goods_list.html', locals())
