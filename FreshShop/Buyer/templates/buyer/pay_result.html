@@ -1,0 +1,14 @@
+{% extends 'buyer/base.html' %}
+
+{% block title %}
+    支付结果
+{% endblock %}
+
+{% block content %}
+    <div class="main_wrap clearfix">
+    <h1>支付账单</h1>
+    <p>账单ID：{{ request.GET.out_trade_no }}</p>
+    <p>支付金额：{{ request.GET.total_amount }}</p>
+    <p>完成时间：{{ request.GET.timestamp }}</p>
+    </div>
+{% endblock %}

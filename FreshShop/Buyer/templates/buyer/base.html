@@ -15,7 +15,7 @@
 			<div class="welcome fl">欢迎来到天天生鲜!</div>
 			<div class="fr">
 				<div class="login_btn fl">
-                    {% if request.COOKIES.username %}
+                    {% if request.session.buyer_id %}
                         {{ request.COOKIES.username|deserialization }}
                         <span>|</span>
                         <a href="/buyer/logout/">退出</a>
@@ -64,7 +64,7 @@
 				</ul>
 			</div>
 			<ul class="navlist fl">
-				<li><a href="">首页</a></li>
+				<li><a href="/buyer/index/">首页</a></li>
 				<li class="interval">|</li>
 				<li><a href="">手机生鲜</a></li>
 				<li class="interval">|</li>

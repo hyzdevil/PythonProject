@@ -12,6 +12,17 @@ class Buyer(models.Model):
     def __str__(self):
         return self.username
 
+class Cart(models.Model):
+    goods_name = models.CharField(max_length=32, verbose_name="商品名称")
+    goods_id = models.IntegerField()
+    goods_price = models.FloatField()
+    goods_number = models.IntegerField()
+    goods_total = models.FloatField()
+    goods_picture = models.ImageField(upload_to="buyer/images")
+    isdelete = models.IntegerField(default=0)
+    store_id = models.IntegerField()
+    user = models.ForeignKey(to=Buyer, on_delete=models.CASCADE)
+
 class Address(models.Model):
     address = models.TextField(verbose_name="收件地址")
     port_num = models.CharField(max_length=32, verbose_name="邮编")
