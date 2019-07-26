@@ -49,8 +49,16 @@
                         {% endfor %}
                     </td>
                 </tr>
+                <tr class="form-group">
+                    <td><label>商品类别：</label></td>
+                    <td>
+                        {% for i in type_list %}
+                            <input type="radio" name="goods_type" value="{{ i.id }}">{{ i.type_name }}&nbsp;&nbsp;
+                        {% endfor %}
+                    </td>
+                </tr>
                 <tr>
-                    <td colspan="2"><input type="submit" class="btn btn-primary btn-user btn-block" value="注册"></td>
+                    <td colspan="2"><input type="submit" class="btn btn-primary btn-user btn-block" value="添加"></td>
                 </tr>
             </table>
         </form>

@@ -2,40 +2,98 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2c37222-5ba3-4d46-8418-157aede9e8e5" name="Default Changelist" comment="静态文件收集">
-      <change afterPath="$PROJECT_DIR$/Store/static/store/css/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Store/static/store/image/timg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Store/static/store/image/timg1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Store/static/store/image/timg3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Store/static/store/image/timg4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Store/static/store/image/timg5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Store/static/store/image/timg6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Store/static/store/image/timg7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Store/templates/store/forgot_password.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/store/css/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/store/image/timg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/store/image/timg1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/store/image/timg3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/store/image/timg4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/store/image/timg5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/store/image/timg6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/store/image/timg7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/store/images/bg_img2.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/store/images/img13.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/store/images/timg.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/store/images/timg1.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/store/images/timg2.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/store/images/user.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/css/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/css/reset.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/adv01.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/adv02.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/banner01.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/banner02.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/banner03.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/banner04.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/banner05.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/banner06.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/down.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/fruit.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods001.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods002.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods003.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods004.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods005.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods006.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods007.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods008.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods009.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods010.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods011.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods012.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods013.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods014.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods015.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods016.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods017.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods018.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods019.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods020.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods/goods021.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods02.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/goods_detail.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/icons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/icons02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/interval_line.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/left_bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/login_banner.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/logo02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/pay_icons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/register_banner.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/shop_cart.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/slide.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/slide02.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/slide03.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/images/slide04.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/js/jquery-1.12.4.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/js/jquery-ui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/js/jquery.cookie.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/js/register.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/static/buyer/js/slide.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/templates/buyer/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/templates/buyer/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/templates/buyer/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/templates/buyer/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/templates/buyer/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Buyer/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Store/templates/store/goods_type_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/templates/store/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/Store/templates/store/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FreshShop/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/FreshShop/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FreshShop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/FreshShop/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/Store/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/migrations/0002_goods_isdelete.py" beforeDir="false" afterPath="$PROJECT_DIR$/Store/migrations/0002_goodstype_type_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Store/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Store/templates/store/add_goods.html" beforeDir="false" afterPath="$PROJECT_DIR$/Store/templates/store/add_goods.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Store/templates/store/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/Store/templates/store/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/templates/store/goods_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/Store/templates/store/goods_detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Store/templates/store/goods_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/Store/templates/store/goods_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/templates/store/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Store/templates/store/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/templates/store/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/Store/templates/store/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/templates/store/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/Store/templates/store/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/templatetags/setJsonTag.py" beforeDir="false" afterPath="$PROJECT_DIR$/Store/templatetags/setJsonTag.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Store/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Store/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Store/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/store/css/sb-admin-2.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/store/css/sb-admin-2.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/store/images/nomal_2BfZrx3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/store/images/nomal_3eoVqrb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/store/images/nomal_7YNEqFu.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/store/images/nomal_EZdNPPn.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/store/images/nomal_FgOIRnI.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/store/images/nomal_aerCEcg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/store/images/nomal_tsaHInW.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/store/images/undraw_posting_photo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/store/images/user_img2.jpeg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -85,11 +143,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Store/views.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Buyer/templates/buyer/register.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="182" column="31" selection-start-line="182" selection-start-column="31" selection-end-line="182" selection-end-column="31" />
+            <state relative-caret-position="300">
+              <caret line="48" column="74" selection-start-line="48" selection-start-column="74" selection-end-line="48" selection-end-column="74" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Buyer/templates/buyer/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="50">
+              <caret line="17" column="87" selection-start-line="17" selection-start-column="87" selection-end-line="17" selection-end-column="87" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Store/templatetags/setJsonTag.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="426">
+              <caret line="39" column="31" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="31" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -98,46 +174,25 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Store/models.py">
+        <entry file="file://$PROJECT_DIR$/Buyer/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="44" column="69" selection-start-line="44" selection-start-column="69" selection-end-line="44" selection-end-column="69" />
+            <state relative-caret-position="225">
+              <caret line="10" column="54" selection-start-line="10" selection-start-column="54" selection-end-line="10" selection-end-column="54" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Store/templates/store/login.html">
+        <entry file="file://$PROJECT_DIR$/Buyer/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="21" column="71" selection-start-line="21" selection-start-column="71" selection-end-line="21" selection-end-column="71" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Store/templates/store/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2500">
-              <caret line="100" column="23" selection-start-line="100" selection-start-column="23" selection-end-line="100" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Store/templates/store/goods_list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="45" column="104" selection-start-line="45" selection-start-column="104" selection-end-line="45" selection-end-column="104" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Store/templates/store/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1403">
-              <caret line="130" column="121" selection-start-line="130" selection-start-column="113" selection-end-line="130" selection-end-column="121" />
+            <state relative-caret-position="301">
+              <caret line="58" column="19" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -147,10 +202,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
-        <option value="HTML File" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="Python Script" />
+        <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -163,7 +218,19 @@
       <find>content</find>
       <find>register</find>
       <find>img-profile rounded-circle</find>
+      <find>store/images/</find>
+      <find>buyer/</find>
+      <find>images/</find>
+      <find>breadcrumb</find>
+      <find>disabled</find>
+      <find>show_count</find>
     </findStrings>
+    <replaceStrings>
+      <replace>buyer/images/</replace>
+      <replace>/static/buyer/</replace>
+      <replace>/static/buyer/images/</replace>
+      <replace>&quot;disabled&quot;</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -176,35 +243,48 @@
         <option value="$PROJECT_DIR$/Store/migrations/0001_initial.py" />
         <option value="$PROJECT_DIR$/Store/templates/store/register_store.html" />
         <option value="$PROJECT_DIR$/Store/templatetags/setJson.py" />
-        <option value="$PROJECT_DIR$/FreshShop/urls.py" />
         <option value="$PROJECT_DIR$/Store/templates/store/update_goods.html" />
-        <option value="$PROJECT_DIR$/Store/templatetags/setJsonTag.py" />
-        <option value="$PROJECT_DIR$/Store/templates/store/goods_detail.html" />
-        <option value="$PROJECT_DIR$/Store/models.py" />
         <option value="$PROJECT_DIR$/Store/templates/store/404.html" />
         <option value="$PROJECT_DIR$/Store/templates/store/forgot-password.html" />
         <option value="$PROJECT_DIR$/Store/templates/store/register.html" />
         <option value="$PROJECT_DIR$/Store/templates/store/forgot_password.html" />
         <option value="$PROJECT_DIR$/Store/templates/store/sold_out.html" />
-        <option value="$PROJECT_DIR$/Store/templates/store/goods_list.html" />
         <option value="$PROJECT_DIR$/Store/templates/store/login.html" />
-        <option value="$PROJECT_DIR$/Store/urls.py" />
-        <option value="$PROJECT_DIR$/Store/templates/store/base.html" />
         <option value="$PROJECT_DIR$/static/store/css/sb-admin-2.min.css" />
-        <option value="$PROJECT_DIR$/Store/templates/store/add_goods.html" />
         <option value="$PROJECT_DIR$/Store/static/store/js/index.js" />
         <option value="$PROJECT_DIR$/Store/static/store/css/index.css" />
-        <option value="$PROJECT_DIR$/Store/templates/store/index.html" />
-        <option value="$PROJECT_DIR$/FreshShop/settings.py" />
         <option value="$PROJECT_DIR$/static/store/css/index.css" />
+        <option value="$PROJECT_DIR$/FreshShop/settings.py" />
+        <option value="$PROJECT_DIR$/FreshShop/urls.py" />
+        <option value="$PROJECT_DIR$/Buyer/urls.py" />
+        <option value="$PROJECT_DIR$/static/buyer/js/login.js" />
+        <option value="$PROJECT_DIR$/static/buyer/css/main.css" />
+        <option value="$PROJECT_DIR$/Buyer/templates/buyer/login.html" />
+        <option value="$PROJECT_DIR$/Buyer/models.py" />
+        <option value="$PROJECT_DIR$/Buyer/migrations/0001_initial.py" />
+        <option value="$PROJECT_DIR$/Buyer/templatetags/setJsonTag.py" />
+        <option value="$PROJECT_DIR$/Store/templates/store/index.html" />
+        <option value="$PROJECT_DIR$/Buyer/templates/buyer/base.html" />
+        <option value="$PROJECT_DIR$/Store/templates/store/goods_detail.html" />
+        <option value="$PROJECT_DIR$/Store/templates/store/add_goods.html" />
+        <option value="$PROJECT_DIR$/Store/templates/store/goods_list.html" />
+        <option value="$PROJECT_DIR$/Store/templates/store/base.html" />
+        <option value="$PROJECT_DIR$/Store/urls.py" />
         <option value="$PROJECT_DIR$/Store/views.py" />
+        <option value="$PROJECT_DIR$/Store/templates/store/goods_type_list.html" />
+        <option value="$PROJECT_DIR$/static/buyer/js/register.js" />
+        <option value="$PROJECT_DIR$/Buyer/templates/buyer/register.html" />
+        <option value="$PROJECT_DIR$/Buyer/views.py" />
+        <option value="$PROJECT_DIR$/Store/templatetags/setJsonTag.py" />
+        <option value="$PROJECT_DIR$/Store/models.py" />
+        <option value="$PROJECT_DIR$/Buyer/templates/buyer/index.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="96" />
-    <option name="width" value="1829" />
-    <option name="height" value="1039" />
+    <option name="x" value="716" />
+    <option name="width" value="1209" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -224,7 +304,47 @@
             <path>
               <item name="FreshShop" type="b2602c69:ProjectViewProjectNode" />
               <item name="FreshShop" type="462c0819:PsiDirectoryNode" />
+              <item name="Buyer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FreshShop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FreshShop" type="462c0819:PsiDirectoryNode" />
+              <item name="Buyer" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FreshShop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FreshShop" type="462c0819:PsiDirectoryNode" />
+              <item name="Buyer" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="buyer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FreshShop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FreshShop" type="462c0819:PsiDirectoryNode" />
+              <item name="FreshShop" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FreshShop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FreshShop" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FreshShop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FreshShop" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="buyer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FreshShop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FreshShop" type="462c0819:PsiDirectoryNode" />
               <item name="Store" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FreshShop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FreshShop" type="462c0819:PsiDirectoryNode" />
+              <item name="Store" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FreshShop" type="b2602c69:ProjectViewProjectNode" />
@@ -250,16 +370,16 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\DjangoProject\PythonProject\FreshShop\Store\static\store\images" />
-      <recent name="E:\DjangoProject\PythonProject\FreshShop\static\store\images" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\DjangoProject\PythonProject\FreshShop\Buyer" />
+      <recent name="E:\DjangoProject\PythonProject\FreshShop\Buyer\templates\buyer" />
       <recent name="E:\DjangoProject\PythonProject\FreshShop\Store\static\store" />
       <recent name="E:\DjangoProject\PythonProject\FreshShop\static\store\images" />
       <recent name="E:\DjangoProject\PythonProject\FreshShop\Store\templates\store" />
-      <recent name="E:\DjangoProject\PythonProject\FreshShop\static\store\js" />
-      <recent name="E:\DjangoProject\PythonProject\FreshShop\Store\static\store\js" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\DjangoProject\PythonProject\FreshShop\Store\static\store\images" />
+      <recent name="E:\DjangoProject\PythonProject\FreshShop\static\store\images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -313,6 +433,8 @@
       <workItem from="1563760390059" duration="28416000" />
       <workItem from="1563843090341" duration="29718000" />
       <workItem from="1563929664339" duration="32223000" />
+      <workItem from="1564015838897" duration="36748000" />
+      <workItem from="1564104163759" duration="4250000" />
     </task>
     <task id="LOCAL-00001" summary="创建后台应用">
       <created>1563762268608</created>
@@ -339,22 +461,22 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90357000" />
+    <option name="totallyTimeSpent" value="131355000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21715818" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12734585" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49932975" visible="true" weight="0.24504249" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.26345608" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49932975" visible="true" weight="0.3427762" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4206799" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="manage.py@FreshShop" order="7" weight="0.22946176" />
+      <window_info anchor="bottom" id="manage.py@FreshShop" order="7" weight="0.15722379" />
       <window_info anchor="bottom" id="Database Console" order="8" weight="0.3286119" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="10" />
@@ -378,34 +500,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="静态文件收集" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="25">
-            <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Store/static/store/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/store/css/sb-admin-2.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/store/images/bg_img0.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/store/images/user_img1.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/store/images/user_img2.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Store/templates/store/cards.html" />
-    <entry file="file://$PROJECT_DIR$/Store/templates/store/utilities-other.html" />
-    <entry file="file://$PROJECT_DIR$/Store/templates/store/tables.html" />
     <entry file="das://880a8da6-8ce5-454b-a05a-047b669e467e/schema/main/table/Store_seller">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -442,27 +536,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/ProgramData/Anaconda3/envs/DjangoPath/Lib/site-packages/django/core/handlers/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="123" selection-start-line="123" selection-end-line="123" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FreshShop/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
           <caret line="1" column="28" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FreshShop/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="21" column="53" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
-          <folding>
-            <element signature="e#633#665#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -488,13 +565,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Store/templates/store/goods_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-75">
-          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Store/templates/store/404.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
@@ -509,20 +579,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Store/templates/store/forgot-password.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="36" column="48" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Store/templates/store/sold_out.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="16" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Store/templates/store/forgot-password.html" />
+    <entry file="file://$PROJECT_DIR$/Store/templates/store/sold_out.html" />
     <entry file="file://$PROJECT_DIR$/Store/static/store/css/sb-admin-2.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
@@ -537,48 +595,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Store/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Store/templates/store/add_goods.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1100">
-          <caret line="44" column="33" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Store/static/store/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="725">
-          <caret line="29" column="1" selection-end-line="29" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Store/templates/store/goods_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="45" column="104" selection-start-line="45" selection-start-column="104" selection-end-line="45" selection-end-column="104" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Store/templates/store/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="21" column="71" selection-start-line="21" selection-start-column="71" selection-end-line="21" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/store/css/sb-admin-2.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="9" column="190444" lean-forward="true" selection-start-line="9" selection-start-column="190444" selection-end-line="9" selection-end-column="190476" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Store/static/store/js/index.js" />
     <entry file="file://$PROJECT_DIR$/Store/static/store/css/sb-admin-2.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="274">
@@ -603,51 +620,205 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Store/templates/store/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="21" column="71" selection-start-line="21" selection-start-column="71" selection-end-line="21" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/store/css/sb-admin-2.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="9" column="190444" selection-start-line="9" selection-start-column="190444" selection-end-line="9" selection-end-column="190476" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Buyer/templates/buyer/list.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FreshShop/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+          <folding>
+            <element signature="e#633#665#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/buyer/js/login.js" />
+    <entry file="file://$PROJECT_DIR$/static/buyer/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="297" column="1" lean-forward="true" selection-start-line="297" selection-start-column="1" selection-end-line="297" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Buyer/templates/buyer/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-175">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Buyer/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="46" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Buyer/migrations/0001_initial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="29" column="60" selection-start-line="29" selection-start-column="60" selection-end-line="29" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Buyer/templatetags/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/Buyer/templatetags/jsonLoadTag.py" />
+    <entry file="file://$PROJECT_DIR$/Buyer/templates/buyer/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-125">
+          <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/FreshShop/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="137" lean-forward="true" selection-start-line="137" selection-end-line="137" />
+        <state relative-caret-position="2106">
+          <caret line="134" lean-forward="true" selection-start-line="134" selection-end-line="134" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/ProgramData/Anaconda3/envs/DjangoPath/Lib/site-packages/django/core/handlers/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="157" selection-start-line="157" selection-end-line="157" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Store/templates/store/goods_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="950">
+          <caret line="41" column="42" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Store/templates/store/add_goods.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="17" column="82" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Store/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="268" column="34" selection-start-line="268" selection-start-column="34" selection-end-line="268" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Store/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Store/templates/store/goods_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="30" column="79" selection-start-line="30" selection-start-column="79" selection-end-line="30" selection-end-column="79" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Store/templates/store/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2500">
-          <caret line="100" column="23" selection-start-line="100" selection-start-column="23" selection-end-line="100" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Store/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="44" column="69" selection-start-line="44" selection-start-column="69" selection-end-line="44" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Store/templatetags/setJsonTag.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+        <state relative-caret-position="134">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="n#div#1;n#div#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Store/templates/store/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1403">
-          <caret line="130" column="121" selection-start-line="130" selection-start-column="113" selection-end-line="130" selection-end-column="121" />
+        <state relative-caret-position="261">
+          <caret line="212" column="61" lean-forward="true" selection-start-line="212" selection-start-column="61" selection-end-line="212" selection-end-column="61" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Store/views.py">
+    <entry file="file://$PROJECT_DIR$/Store/templates/store/goods_type_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="182" column="31" selection-start-line="182" selection-start-column="31" selection-end-line="182" selection-end-column="31" />
+        <state relative-caret-position="160">
+          <caret line="24" column="54" selection-start-line="24" selection-start-column="54" selection-end-line="24" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Buyer/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="10" column="54" selection-start-line="10" selection-start-column="54" selection-end-line="10" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/buyer/js/register.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Buyer/templates/buyer/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="48" column="74" selection-start-line="48" selection-start-column="74" selection-end-line="48" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Buyer/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="58" column="19" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Store/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="40" column="82" selection-start-line="40" selection-start-column="82" selection-end-line="40" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Store/templatetags/setJsonTag.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="39" column="31" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Buyer/templates/buyer/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="17" column="87" selection-start-line="17" selection-start-column="87" selection-end-line="17" selection-end-column="87" />
         </state>
       </provider>
     </entry>

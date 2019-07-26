@@ -20,16 +20,15 @@
                     <th>生产日期</th>
                     <th>保质期(月)</th>
                     <th>上架商铺</th>
+                    <th>商品类型</th>
                     <th>操作</th>
                 </tr>
             </thead>
             <tbody>
                 {% for goods in page %}
                     <tr>
-                        <td><a href="/store/detail_goods/{{ goods.id }}/">{{ goods.goods_name }}</td>
-                        <td>
-                            <input type="text" value="{{ goods.goods_price }}">
-                        </td>
+                        <td><a href="/store/detail_goods/{{ goods.id }}/">{{ goods.goods_name }}</a></td>
+                        <td><input type="text" value="{{ goods.goods_price }}"></td>
                         <td>{{ goods.goods_number }}</td>
                         <td>{{ goods.goods_date|date:"Y-m-d" }}</td>
                         <td>{{ goods.goods_safeDate }}</td>
@@ -38,15 +37,14 @@
                                 <p>{{ store.store_name }}</p>
                             {% endfor %}
                         </td>
+                        <td>{{ goods.goods_type_id|goodsType }}</td>
                         <td>
-                            {% if goods.isdelete %}
-                                <a class="btn btn-warning" href="/store/putaway/{{ goods.id }}/">上架</a>
-                                <a class="btn btn-warning disabled" href="/store/sold_out/{{ goods.id }}/">下架</a>
+                            {% ifequal state "up" %}
+                                <a class="btn btn-warning" href="/store/set_goods/down/?goods_id={{ goods.id }}">下架</a>
                             {% else %}
-                                <a class="btn btn-warning disabled" href="/store/putaway/{{ goods.id }}/">上架</a>
-                                <a class="btn btn-warning" href="/store/sold_out/{{ goods.id }}/">下架</a>
-                            {% endif %}
-                            <a class="btn btn-danger" href="#">销毁</a>
+                                <a class="btn btn-warning" href="/store/set_goods/up/?goods_id={{ goods.id }}">上架</a>
+                            {% endifequal %}
+                            <a class="btn btn-danger" href="/store/set_goods/delete/?goods_id={{ goods.id }}">销毁</a>
                         </td>
                     </tr>
                 {% endfor %}

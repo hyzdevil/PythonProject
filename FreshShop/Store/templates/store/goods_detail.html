@@ -1,4 +1,5 @@
 {% extends 'store/base.html' %}
+{% load setJsonTag %}
 
 {% block title %}
     <title>{{ goods.goods_name }}&nbsp;详情</title>
@@ -28,13 +29,19 @@
                 <td>{{ goods.goods_safeDate }}</td>
             </tr>
             <tr class="form-group">
-                    <th style="text-align: center"><label>上架商铺</label></th>
-                    <th colspan="4">
-                        {% for i in store %}
-                            {{ i.store_name }}&nbsp;&nbsp;
-                        {% endfor %}
-                    </th>
-                </tr>
+                <th style="text-align: center"><label>上架商铺</label></th>
+                <th colspan="4">
+                    {% for store in goods.id|goodsOfstore %}
+                        {{ store.store_name }}&nbsp;&nbsp;
+                    {% endfor %}
+                </th>
+            </tr>
+            <tr class="form-group">
+                <th style="text-align: center"><label>商品类别</label></th>
+                <th colspan="4">
+                    {{ goods.goods_type_id|goodsType }}
+                </th>
+            </tr>
             <tr class="form-group">
                 <th colspan="5" style="text-align: center"><label>商品详情</label></th>
             </tr>

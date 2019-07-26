@@ -22,3 +22,21 @@ def has_store(value):
         return True
     else:
         return False
+
+@register.filter(name="goodsType")
+def goodsType(value):
+    goods_type = models.GoodsType.objects.get(id=value)
+    return goods_type.type_name
+
+@register.filter(name="goodsTypeList")
+def goodsTypeList(value):
+    result = []
+    for type in value:
+        goods_list = type.goods_set.all()
+        if goods_list:
+            result.append(type)
+    return result
+
+@register.filter(name="typeData")
+def typeData(value):
+    return value.goods_set.all()[:4]

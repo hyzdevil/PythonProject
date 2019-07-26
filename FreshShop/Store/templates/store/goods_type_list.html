@@ -1,0 +1,86 @@
+{% extends 'store/base.html' %}
+{% load setJsonTag %}
+
+{% block title %}
+    <title>商品类别列表</title>
+{% endblock %}
+
+{% block content %}
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">商品类别列表</h1>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>商品类别名称</th>
+                    <th>商品类别描述</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for goods_type in page %}
+                    <tr>
+                        <td>{{ goods_type.type_name }}</td>
+                        <td>{{ goods_type.type_description }}</td>
+                        <td>
+                            <a class="btn btn-danger" href="/store/del_goodsType/?goods_type_id={{ goods_type.id }}">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-sm-12 col-md-5">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">添加商品类别</button>
+            </div>
+            <div class="col-sm-12 col-md-7">
+                <div class="dataTables_paginate paging_simple_numbers">
+                    <ul class="pagination">
+                        {% for page in page_range %}
+                            <li class="paginate_button page-item">
+                                <a href="?keyword={{ keywords }}&page_num={{ page }}" class="page-link">{{ page }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">添加商品类型</h4>
+                    <button type="button" class="close" data-dismiss="model" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form method="post" action="/store/add_goods_type/" class="form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <table>
+                            <tr class="form-group">
+                                <td><label>类型名称：</label></td>
+                                <td><input type="text" class="form-control" name="type_name"></td>
+                            </tr>
+                            <tr class="form-group">
+                                <td><label>类型描述：</label></td>
+                                <td><input type="text" class="form-control" name="type_description"></td>
+                            </tr>
+                            <tr class="form-group">
+                                <td><label>类型图片：</label></td>
+                                <td><input type="file" class="form-control" name="type_image"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+{% endblock %}

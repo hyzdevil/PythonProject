@@ -39,6 +39,15 @@
                 <!-- Divider -->
                 <hr class="sidebar-divider my-0">
 
+                <li class="nav-item">
+                    <a class="nav-link" href="/store/index/">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>首页</span>
+                    </a>
+                </li>
+
+                <hr class="sidebar-divider my-0">
+
                 {% if request.session.user_id|has_store %}
                     <!-- Nav Item - Dashboard -->
                     <li class="nav-item">
@@ -59,10 +68,21 @@
                             <div class="bg-white py-2 collapse-inner rounded">
                                 <h6 class="collapse-header">商品管理：</h6>
                                 <a class="collapse-item" href="/store/add_goods/">商品添加</a>
-                                <a class="collapse-item" href="/store/list_goods/">商品列表</a>
+                                <a class="collapse-item" href="/store/list_goods/up/">已上架商品列表</a>
+                                <a class="collapse-item" href="/store/list_goods/down/">已下架商品列表</a>
                             </div>
                         </div>
                     </li>
+
+                    <hr class="sidebar-divider my-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/store/goods_type_list/">
+                            <i class="fas fa-fw fa-cog"></i>
+                            <span>商品类别管理</span>
+                        </a>
+                    </li>
+
                     <hr class="sidebar-divider my-0">
                 {% endif %}
 

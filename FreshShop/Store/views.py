@@ -144,6 +144,7 @@ def register_store(request):
 def add_goods(request):
     user_id = request.session.get("user_id")
     store = Store.objects.filter(user_id=user_id)
+    goods_type_list = GoodsType.objects.all()
     if request.method == "POST":
         goods_name = request.POST.get("goods_name")
         goods_description = request.POST.get("goods_description")
@@ -152,6 +153,7 @@ def add_goods(request):
         goods_images = request.FILES.get("goods_images")
         goods_date = request.POST.get("goods_date")
         goods_safeDate = request.POST.get("goods_safeDate")
+        goods_type = request.POST.get("goods_type")
         store_type = request.POST.getlist("store_type")
         goods = Goods()
         goods.goods_name = goods_name
@@ -161,26 +163,31 @@ def add_goods(request):
         goods.goods_images = goods_images
         goods.goods_date = goods_date
         goods.goods_safeDate = goods_safeDate
+        goods.goods_type_id = goods_type
         goods.save()
         for i in store_type:
             goods.store_id.add(Store.objects.get(id=i))
         goods.save()
-        return HttpResponseRedirect("/store/list_goods/")
-    return render(request, 'store/add_goods.html', {"store":store})
+        return HttpResponseRedirect("/store/list_goods/up/")
+    return render(request, 'store/add_goods.html', {"store":store,"type_list":goods_type_list})
 # 商品列表
 @loginValid
-def list_goods(request):
+def list_goods(request, state):
+    if state == "up":
+        status = 1
+    else:
+        status = 0
     keywords = request.GET.get("keywords","")
     page_num = request.GET.get("page_num", 1)
     store = Store.objects.filter(id=request.session.get("user_id"))
     goods_list = []
     if keywords:
         for i in store:
-            goods = i.goods_set.filter(goods_name__contains=keywords)
+            goods = i.goods_set.filter(goods_name__contains=keywords, goods_status=status)
             goods_list += goods
     else:
         for i in store:
-            goods = i.goods_set.all()
+            goods = i.goods_set.filter(goods_status=status)
             goods_list += goods
     goods_list = list(set(goods_list))
     paginator = Paginator(goods_list, 10)
@@ -190,8 +197,9 @@ def list_goods(request):
 # 商品详情
 @loginValid
 def goods_detail(request, goods_id):
-    user_id = request.session.get("user_id")
-    store = Store.objects.filter(user_id=user_id)
+    # user_id = request.session.get("user_id")
+    # store = Store.objects.filter(user_id=user_id)
+    goods_type_list = GoodsType.objects.all()
     goods = Goods.objects.filter(id = goods_id).first()
     return render(request, 'store/goods_detail.html', locals())
 # 修改商品
@@ -220,6 +228,7 @@ def update_goods(request, goods_id):
             goods.goods_images = goods_images
         goods.save()
         if store_type:
+            goods.store_id.clear()
             for i in store_type:
                 goods.store_id.add(Store.objects.get(id=i))
         goods.save()
@@ -228,15 +237,45 @@ def update_goods(request, goods_id):
 # 找回密码
 def reset_password(request):
     return render(request, 'store/forgot_password.html')
-# 下架商品
-def sold_out(request, goods_id):
-    goods = Goods.objects.get(id = goods_id)
-    goods.isdelete = True
-    goods.save()
-    return HttpResponseRedirect("/store/list_goods/")
-# 上架商品
-def putaway(request, goods_id):
-    goods = Goods.objects.get(id=goods_id)
-    goods.isdelete = False
-    goods.save()
-    return HttpResponseRedirect("/store/list_goods/")
+# 设置商品状态
+def set_goods(request, state):
+    if state == "up":
+        status = 1
+    else:
+        status = 0
+    goods_id = request.GET.get("goods_id")
+    referer = request.META.get("HTTP_REFERER")
+    if goods_id:
+        goods = Goods.objects.get(id = int(goods_id))
+        if state == "delete":
+            goods.delete()
+        else:
+            goods.goods_status = status
+            goods.save()
+    return HttpResponseRedirect(referer)
+# 商品类别列表
+def goods_type_list(request):
+    page_num = request.GET.get("page_num", 1)
+    type_list = GoodsType.objects.all()
+    paginator = Paginator(type_list, 10)
+    page = paginator.page(int(page_num))
+    page_range = paginator.page_range
+    return render(request, 'store/goods_type_list.html', locals())
+# 添加商品类别
+def add_goods_type(request):
+    if request.method == "POST":
+        type_name = request.POST.get("type_name")
+        type_description = request.POST.get("type_description")
+        type_image = request.FILES.get("type_image")
+        GoodsType.objects.create(
+            type_name=type_name,
+            type_description=type_description,
+            type_picture=type_image
+        )
+    return HttpResponseRedirect("/store/goods_type_list/")
+# 删除商品类别
+def del_goodsType(request):
+    referer = request.META.get("HTTP_REFERER")
+    goods_type_id = request.GET.get("goods_type_id")
+    GoodsType.objects.filter(id=goods_type_id).delete()
+    return HttpResponseRedirect(referer)

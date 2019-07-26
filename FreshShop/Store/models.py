@@ -33,6 +33,13 @@ class Store(models.Model):
     user = models.ForeignKey(to=Seller, on_delete=models.CASCADE, verbose_name="店铺主人")
     type = models.ManyToManyField(to=StoreType, verbose_name="店铺类型")
 
+# 商品类型
+class GoodsType(models.Model):
+    type_name = models.CharField(max_length=32, verbose_name="商品类别")
+    type_picture = models.ImageField(upload_to="store/images", verbose_name="商品类别")
+    type_description = models.TextField(verbose_name="类别描述")
+    type_class = models.CharField(max_length=32, verbose_name="类别class", default=1)
+
 # 商品
 class Goods(models.Model):
     goods_name = models.CharField(max_length=32, verbose_name="商品名称")
@@ -42,9 +49,10 @@ class Goods(models.Model):
     goods_description = models.TextField(verbose_name="商品描述")
     goods_date = models.DateField(verbose_name="出厂日期")
     goods_safeDate = models.IntegerField(verbose_name="保质期")
-    isdelete = models.BooleanField(verbose_name="是否下架", default=False)
+    goods_status = models.IntegerField(verbose_name="商品状态", default=1)
 
     store_id = models.ManyToManyField(to=Store, verbose_name="商品店铺")
+    goods_type = models.ForeignKey(to=GoodsType, on_delete=models.CASCADE)
 
 # 商品图片
 class Goods_img(models.Model):
