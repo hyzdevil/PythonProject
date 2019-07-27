@@ -8,6 +8,8 @@ urlpatterns = [
     path('logout/', views.logout),
     path('goods_list/', views.goods_list),
     path('goods_detail/', views.goods_detail),
+    path('add_cart/', views.add_cart),
+    path('cart/', views.cart),
 ]
 urlpatterns += [
     re_path(r'^ajaxValid/(?P<data>\w+)/$', views.ajaxValid),

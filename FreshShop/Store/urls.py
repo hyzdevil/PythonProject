@@ -21,3 +21,6 @@ urlpatterns = [
     re_path(r'^detail_goods/(?P<goods_id>\d+)/$', views.goods_detail),
     re_path(r'^update_goods/(?P<goods_id>\d+)/$', views.update_goods),
 ]
+urlpatterns += [
+    # path('add/', views.add),
+]

@@ -5,7 +5,7 @@
 {% endblock %}
 {% block style %}
     <script type="text/javascript" src="/static/buyer/js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="/static/buyer/js/vue.js"></script>
+{#    <script type="text/javascript" src="/static/buyer/js/vue.js"></script>#}
 {% endblock %}
 {% block content %}
 	<div class="breadcrumb">
@@ -73,7 +73,7 @@
 			<div class="tab_content">
 				<dl>
 					<dt>商品详情：</dt>
-					<dd>草莓采摘园位于北京大兴区 庞各庄镇四各庄村 ，每年1月-6月面向北京以及周围城市提供新鲜草莓采摘和精品礼盒装草莓，草莓品种多样丰富，个大香甜。所有草莓均严格按照有机标准培育，不使用任何化肥和农药。草莓在采摘期间免洗可以直接食用。欢迎喜欢草莓的市民前来采摘，也欢迎各大单位选购精品有机草莓礼盒，有机草莓礼盒是亲朋馈赠、福利送礼的最佳选择。 </dd>
+					<dd>{{ goods.goods_description }}</dd>
 				</dl>
 			</div>
 
@@ -101,17 +101,27 @@
         }
 
         $("#add_cart").click(function () {
-            $.ajaxSetup({data:{csrfmiddlewaretoken:'{{ csrf_token }}'}});
+            $.ajaxSetup({
+                data:{
+                    csrfmiddlewaretoken:'{{ csrf_token }}'
+                }
+            });
             $.ajax({
-                url:"/buyer/goods_detail/",
+                url:"/buyer/add_cart/",
                 type:"post",
+                dataType:"json",
                 data:{
                     goods_id:{{ goods.id}},
                     number:$("#number").val(),
                     total:$("#total").val()
                 },
                 success:function (data) {
-                    alert(data)
+                    if(data.flag == 1){
+                        alert(data.message)
+                    }else {
+                        alert(data.message);
+                        window.location.href="/buyer/login/";
+                    }
                 },
                 error:function (error) {
                     console.log(error)

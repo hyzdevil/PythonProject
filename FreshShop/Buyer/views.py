@@ -25,6 +25,18 @@ def ajaxValid(request, data):
             result["message"] = "该邮箱已被注册"
         return JsonResponse(result)
 
+def loginValid(fun):
+    def inner(request, *args, **kwargs):
+        c_name = request.COOKIES.get("username")
+        s_name = request.session.get("username")
+        if c_name and s_name:
+            c_name = json.loads(c_name)
+            user = Buyer.objects.filter(username=c_name).first()
+            if user and user.username == s_name:
+                return fun(request, *args, **kwargs)
+        return HttpResponseRedirect("/buyer/login/")
+    return inner
+
 def login(request):
     result = {"message":""}
     if request.method == "POST":
@@ -35,8 +47,10 @@ def login(request):
             if buyer.password == setPassword(password):
                 response = HttpResponseRedirect("/buyer/index/")
                 response.set_cookie("username", json.dumps(username))
+                response.set_cookie("cartlength", len(Cart.objects.filter(user_id=buyer.id)))
                 request.session["username"] = username
                 request.session["buyer_id"] = buyer.id
+                request.session["is_login"] = True
                 return response
             else:
                 result["message"] = "用户名或密码错误"
@@ -64,6 +78,7 @@ def index(request):
 def logout(request):
     response = HttpResponseRedirect("/buyer/index/")
     response.delete_cookie("username")
+    response.delete_cookie("cartlength")
     request.session.flush()
     return response
 
@@ -78,7 +93,16 @@ def goods_list(request):
 def goods_detail(request):
     goods_id = request.GET.get("goods_id")
     goods = Goods.objects.filter(id=goods_id).first()
-    if request.method == "POST":
+    return render(request, 'buyer/goods_detail.html', {"goods":goods})
+
+@loginValid
+def cart(request):
+    buyer_id = request.session.get("buyer_id")
+    cart_list = Cart.objects.filter(user_id=buyer_id)
+    return render(request, 'buyer/cart.html', locals())
+
+def add_cart(request):
+    if request.session.get("is_login", None):
         buyer_id = request.session.get("buyer_id")
         goods_id = int(request.POST.get("goods_id"))
         goods_number = int(request.POST.get("number"))
@@ -94,8 +118,12 @@ def goods_detail(request):
         cart.store_id = goods.store_id.all().first().id
         cart.user_id = buyer_id
         cart.save()
-        return HttpResponse("成功添加到购物车")
-    return render(request, 'buyer/goods_detail.html', {"goods":goods})
+        message = "成功添加到购物车"
+        flag = 1
+    else:
+        message = "你还没有登录，请登录"
+        flag = 0
+    return JsonResponse({"message":message,"flag":flag})
 
 def pay_result(request):
     """

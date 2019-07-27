@@ -1,0 +1,79 @@
+{% extends 'buyer/base_person.html' %}
+{% load setJsonTag %}
+{% block title %}
+    购物车
+{% endblock %}
+{% block style %}
+    <script type="text/javascript" src="/static/buyer/js/jquery-3.3.1.min.js"></script>
+{% endblock %}
+{% block content %}
+    {% if cart_list %}
+        <div class="total_count">全部商品<em>{{ cart_list|lenCart }}</em>件</div>
+        <ul class="cart_list_th clearfix">
+            <li class="col01">商品名称</li>
+            <li class="col02">商品单位</li>
+            <li class="col03">商品价格</li>
+            <li class="col04">数量</li>
+            <li class="col05">小计</li>
+            <li class="col06">操作</li>
+        </ul>
+        {% for goods in cart_list %}
+            <ul class="cart_list_td clearfix">
+                <li class="col01"><input type="checkbox" name="" class="check-one check"></li>
+                <li class="col02"><img src="/static/{{ goods.goods_picture }}"></li>
+                <li class="col03">{{ goods.goods_name }}<br><em>{{ goods.goods_price }}元/500g</em></li>
+                <li class="col04">500g</li>
+                <li class="col05"><span>{{ goods.goods_price }}</span>元</li>
+                <li class="col06">
+                    <div class="num_add">
+                        <button type="button" class="add fl div">+</button>
+                        <input type="text" class="num_show fl" value="{{ goods.goods_number }}" id="number">
+                        <button type="button" class="minus fl div">-</button>
+                    </div>
+                </li>
+                <li class="col07"><span>{{ goods.goods_total }}</span>元</li>
+                <li class="col08"><a href="javascript:;">删除</a></li>
+            </ul>
+        {% endfor %}
+        <ul class="settlements">
+            <li class="col01"><input type="checkbox" name="" class="check-all check"></li>
+            <li class="col02">全选</li>
+            <li class="col03">合计(不含运费)：<span>¥</span><em>42.60</em><br>共计<b>2</b>件商品</li>
+            <li class="col04"><a href="place_order.html">去结算</a></li>
+        </ul>
+    {% else %}
+        <div class="center_con clearfix" style="text-align: center">
+            <h1>你的购物车空空如也...</h1>
+        </div>
+    {% endif %}
+{% endblock %}
+{% block script %}
+    <script type="text/javascript">
+        $(".add").click(function () {
+            var price = $(this).closest("li").prev()[0].childNodes[0].innerHTML;
+            var value = $(this).next().val();
+            value++;
+            $(this).next().val(value);
+            total = value * price;
+            $(this).closest("li").next()[0].childNodes[0].innerHTML = total.toFixed(2)
+        }) ;
+        $(".minus").click(function () {
+            var price = $(this).closest("li").prev()[0].childNodes[0].innerHTML;
+            var value = $(this).prev().val();
+            if(value > 1){
+                value--;
+            }else {
+                value = 1
+            }
+            $(this).prev().val(value);
+            total = value * price;
+            $(this).closest("li").next()[0].childNodes[0].innerHTML = total.toFixed(2)
+        });
+        $(".check").click(function(){
+            if(this.className === "check-all check"){
+                $(".check").prop("checked",this.checked)
+            }
+            {#getTotal()#}
+        });
+    </script>
+{% endblock %}

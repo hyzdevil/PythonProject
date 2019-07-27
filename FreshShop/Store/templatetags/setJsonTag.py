@@ -40,3 +40,7 @@ def goodsTypeList(value):
 @register.filter(name="typeData")
 def typeData(value):
     return value.goods_set.filter(goods_status=1)[:4]
+
+@register.filter(name="lenCart")
+def lenCart(value):
+    return len(value)
