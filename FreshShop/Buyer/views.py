@@ -47,7 +47,6 @@ def login(request):
             if buyer.password == setPassword(password):
                 response = HttpResponseRedirect("/buyer/index/")
                 response.set_cookie("username", json.dumps(username))
-                response.set_cookie("cartlength", len(Cart.objects.filter(user_id=buyer.id)))
                 request.session["username"] = username
                 request.session["buyer_id"] = buyer.id
                 request.session["is_login"] = True
@@ -101,6 +100,11 @@ def cart(request):
     cart_list = Cart.objects.filter(user_id=buyer_id)
     return render(request, 'buyer/cart.html', locals())
 
+def del_goods(request):
+    cart_id = request.GET.get("cart_id")
+    Cart.objects.filter(id=cart_id).delete()
+    return HttpResponseRedirect("/buyer/cart/")
+
 def add_cart(request):
     if request.session.get("is_login", None):
         buyer_id = request.session.get("buyer_id")
@@ -124,6 +128,22 @@ def add_cart(request):
         message = "你还没有登录，请登录"
         flag = 0
     return JsonResponse({"message":message,"flag":flag})
+
+def place_order(request):
+    if request.method == "POST":
+        content = []
+        goods_id_list = request.POST.getlist("goods_id")
+        num_list = request.POST.getlist("number")
+        for (goods_id, num) in zip(goods_id_list, num_list):
+            goods = Goods.objects.filter(id=int(goods_id)).first()
+            data = {
+                "goods":goods,
+                "num":num,
+                "total":int(num)*goods.goods_price,
+            }
+            content.append(data)
+        return render(request, 'buyer/place_order.html',{"content":content})
+    return render(request, 'buyer/place_order.html')
 
 def pay_result(request):
     """

@@ -17,30 +17,36 @@
             <li class="col05">小计</li>
             <li class="col06">操作</li>
         </ul>
-        {% for goods in cart_list %}
-            <ul class="cart_list_td clearfix">
-                <li class="col01"><input type="checkbox" name="" class="check-one check"></li>
-                <li class="col02"><img src="/static/{{ goods.goods_picture }}"></li>
-                <li class="col03">{{ goods.goods_name }}<br><em>{{ goods.goods_price }}元/500g</em></li>
-                <li class="col04">500g</li>
-                <li class="col05"><span>{{ goods.goods_price }}</span>元</li>
-                <li class="col06">
-                    <div class="num_add">
-                        <button type="button" class="add fl div">+</button>
-                        <input type="text" class="num_show fl" value="{{ goods.goods_number }}" id="number">
-                        <button type="button" class="minus fl div">-</button>
-                    </div>
+        <form method="post" action="/buyer/place_order/">
+            {% csrf_token %}
+            {% for goods in cart_list %}
+                <ul class="cart_list_td clearfix">
+                    <li class="col01"><input type="checkbox" name="goods_id" class="check-one check" value="{{ goods.goods_id }}"></li>
+                    <li class="col02"><img src="/static/{{ goods.goods_picture }}"></li>
+                    <li class="col03">{{ goods.goods_name }}<br><em>{{ goods.goods_price }}元/500g</em></li>
+                    <li class="col04">500g</li>
+                    <li class="col05"><span>{{ goods.goods_price }}</span>元</li>
+                    <li class="col06">
+                        <div class="num_add">
+                            <button type="button" class="add fl div">+</button>
+                            <input type="text" class="num_show fl" value="{{ goods.goods_number }}" id="number" name="number">
+                            <button type="button" class="minus fl div">-</button>
+                        </div>
+                    </li>
+                    <li class="col07"><span>{{ goods.goods_total }}</span>元</li>
+                    <li class="col08"><a href="/buyer/del_goods/?cart_id={{ goods.id }}">删除</a></li>
+                </ul>
+            {% endfor %}
+            <ul class="settlements">
+                <li class="col01"><input type="checkbox" name="" class="check-all check"></li>
+                <li class="col02">全选</li>
+                <li class="col03">
+                    合计(不含运费)：<span>¥</span><em><span id="allTotal">0.00</span></em><br>
+                    共计<b><span id="allNum">0</span></b>件商品
                 </li>
-                <li class="col07"><span>{{ goods.goods_total }}</span>元</li>
-                <li class="col08"><a href="javascript:;">删除</a></li>
+                <li class="col04"><input id="submit" type="submit" value="去结算"></li>
             </ul>
-        {% endfor %}
-        <ul class="settlements">
-            <li class="col01"><input type="checkbox" name="" class="check-all check"></li>
-            <li class="col02">全选</li>
-            <li class="col03">合计(不含运费)：<span>¥</span><em>42.60</em><br>共计<b>2</b>件商品</li>
-            <li class="col04"><a href="place_order.html">去结算</a></li>
-        </ul>
+        </form>
     {% else %}
         <div class="center_con clearfix" style="text-align: center">
             <h1>你的购物车空空如也...</h1>
@@ -49,6 +55,19 @@
 {% endblock %}
 {% block script %}
     <script type="text/javascript">
+        function getTotal(){
+            var num = 0;
+            var all_total = 0;
+            for(var i = 0; i < $(".check").length -1; i++){
+                if($(".check")[i].checked){
+                    num += 1;
+                    var price = parseFloat($(".check")[i].closest("ul").children[6].childNodes[0].innerHTML);
+                    all_total += price;
+                }
+            }
+            $(".settlements .col03 #allNum")[0].innerHTML = num;
+            $(".settlements .col03 #allTotal")[0].innerHTML = all_total.toFixed(2);
+        }
         $(".add").click(function () {
             var price = $(this).closest("li").prev()[0].childNodes[0].innerHTML;
             var value = $(this).next().val();
@@ -56,6 +75,7 @@
             $(this).next().val(value);
             total = value * price;
             $(this).closest("li").next()[0].childNodes[0].innerHTML = total.toFixed(2)
+            getTotal();
         }) ;
         $(".minus").click(function () {
             var price = $(this).closest("li").prev()[0].childNodes[0].innerHTML;
@@ -68,12 +88,13 @@
             $(this).prev().val(value);
             total = value * price;
             $(this).closest("li").next()[0].childNodes[0].innerHTML = total.toFixed(2)
+            getTotal();
         });
         $(".check").click(function(){
             if(this.className === "check-all check"){
                 $(".check").prop("checked",this.checked)
             }
-            {#getTotal()#}
+            getTotal();
         });
     </script>
 {% endblock %}

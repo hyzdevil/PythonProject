@@ -46,7 +46,7 @@
 		<div class="guest_cart fr">
 			<a href="/buyer/cart/" class="cart_name fl">我的购物车</a>
 			{% if request.session.is_login %}
-			    <div class="goods_count fl">{{ request.COOKIES.cartlength }}</div>
+			    <div class="goods_count fl">{{ request.session.buyer_id|lengthCart }}</div>
             {% else %}
                 <div class="goods_count fl">0</div>
             {% endif %}
