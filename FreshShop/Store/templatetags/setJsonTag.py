@@ -28,9 +28,8 @@ def Deserialization(value):
 @register.filter(name="goodsOfstore")
 def goodsOfstore(value):
     goods_id = int(value)
-    goods = Sm.Goods.objects.get(id=goods_id)
-    store = goods.store_id.all()
-    return store
+    store = Sm.Store.objects.get(id=goods_id)
+    return store.store_name
 
 @register.filter(name="has_store")
 def has_store(value):
@@ -61,3 +60,13 @@ def typeData(value):
 @register.filter(name="lenCart")
 def lenCart(value):
     return len(value)
+
+@register.filter(name="goodsOfOrder")
+def goodsOfOrder(value):
+    goodslist = value.orderdetail_set.all()
+    return goodslist
+
+@register.filter(name="getPicture")
+def getPicture(value):
+    goods = Sm.Goods.objects.filter(id=value).first()
+    return goods.goods_images

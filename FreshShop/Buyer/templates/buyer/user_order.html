@@ -1,0 +1,66 @@
+{% extends 'buyer/base_person.html' %}
+{% load setJsonTag %}
+{% block title %}
+    订单页
+{% endblock %}
+
+{% block content %}
+	<div class="main_con clearfix">
+		<div class="left_menu_con clearfix">
+			<h3>用户中心</h3>
+			<ul>
+				<li><a href="user_center_info.html">· 个人信息</a></li>
+				<li><a href="user_center_order.html" class="active">· 全部订单</a></li>
+				<li><a href="user_center_site.html">· 收货地址</a></li>
+			</ul>
+		</div>
+		<div class="right_content clearfix">
+            <h3 class="common_title2">全部订单</h3>
+            {% for order in order_list %}
+                <ul class="order_list_th w978 clearfix">
+                    <li class="col01">2016-8-21 17:36:24</li>
+                    <li class="col02">订单号：{{ order.order_id }}</li>
+                    <li class="col02 stress">{{ order.get_order_status_display }}</li>
+                    <li class="col02 ">运费：10.00元</li>
+                </ul>
+                <table class="order_list_table w980">
+                <tbody>
+                    <tr>
+                        <td width="55%">
+                            {% for goods in order|goodsOfOrder %}
+                                <ul class="order_goods_list clearfix">
+                                    <li class="col01"><img src="/static/{{ goods.goods_id|getPicture }}"></li>
+                                    <li class="col02">{{ goods.goods_name }}<em>{{ goods.goods_price }}元/500g</em></li>
+                                    <li class="col03">{{ goods.goods_number }}</li>
+                                    <li class="col04">{{ goods.goods_total }}元</li>
+                                </ul>
+                            {% endfor %}
+                        </td>
+                        <td width="15%">{{ order.order_total }}元</td>
+                        {% ifequal order.order_status 1 %}
+                            <td width="15%">待付款</td>
+                            <td width="15%"><a href="/buyer/pay_order/?money={{ order.order_total }}&order_id={{ order.order_id }}" class="oper_btn">去付款</a></td>
+                        {% else %}
+                            {% ifequal order.order_status 2 %}
+                                <td width="15%">已付款</td>
+                                <td width="15%"><a href="#" class="oper_btn">查看物流</a></td>
+                            {% else %}
+                                <td colspan="2" width="30%">该订单已取消</td>
+                            {% endifequal %}
+                        {% endifequal %}
+                    </tr>
+                </tbody>
+            </table>
+            {% endfor %}
+            <div class="pagenation">
+                <a href="#"><上一页</a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">下一页></a>
+            </div>
+		</div>
+	</div>
+{% endblock %}

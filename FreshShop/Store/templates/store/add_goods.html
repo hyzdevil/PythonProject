@@ -45,7 +45,7 @@
                     <td><label>上架店铺：</label></td>
                     <td>
                         {% for i in store %}
-                            <input type="checkbox" name="store_type" value="{{ i.id }}">{{ i.store_name }}&nbsp;&nbsp;
+                            <input type="radio" name="store_type" value="{{ i.id }}">{{ i.store_name }}&nbsp;&nbsp;
                         {% endfor %}
                     </td>
                 </tr>

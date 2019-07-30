@@ -1,4 +1,6 @@
 import json
+import time
+
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import HttpResponseRedirect
@@ -10,6 +12,15 @@ from Store.views import setPassword
 from alipay import AliPay
 
 # Create your views here.
+
+def setOrderID(user_id):
+    """
+    设置订单编号
+    时间+用户ID+商品ID+商铺ID
+    """
+    strtime = time.strftime("%Y%m%d-%H%M%S", time.localtime())
+    return str(user_id)+strtime
+
 def ajaxValid(request, data):
     result = {"message":""}
     if data == "name":
@@ -119,7 +130,7 @@ def add_cart(request):
         cart.goods_number = goods_number
         cart.goods_total = goods_total
         cart.goods_picture = goods.goods_images
-        cart.store_id = goods.store_id.all().first().id
+        cart.store_id = goods.store_id_id
         cart.user_id = buyer_id
         cart.save()
         message = "成功添加到购物车"
@@ -129,6 +140,7 @@ def add_cart(request):
         flag = 0
     return JsonResponse({"message":message,"flag":flag})
 
+@loginValid
 def place_order(request):
     if request.method == "POST":
         content = []
@@ -145,6 +157,38 @@ def place_order(request):
         return render(request, 'buyer/place_order.html',{"content":content})
     return render(request, 'buyer/place_order.html')
 
+def add_order(request):
+    user_id = request.session.get("buyer_id")
+    order_list = Order.objects.filter(order_user_id=user_id)
+    if request.method == "POST":
+        number = request.POST.get("number")
+        allTotal = request.POST.get("allTotal")
+        goods_id_list = request.POST.getlist("goods_id")
+        order = Order()
+        order.order_id = setOrderID(user_id)
+        order.order_count = len(goods_id_list)
+        order.order_total = allTotal
+        order.order_user_id = user_id
+        order.save()
+        for goods_id in goods_id_list:
+            goods = Goods.objects.filter(id=goods_id).first()
+            orderDetail = OrderDetail()
+            orderDetail.order_id = Order.objects.get(order_id=setOrderID(user_id)).id
+            orderDetail.goods_id = goods_id
+            orderDetail.goods_name = goods.goods_name
+            orderDetail.goods_price = goods.goods_price
+            orderDetail.goods_number = number
+            orderDetail.goods_total = int(number)*goods.goods_price
+            orderDetail.goods_store = goods.store_id_id
+            orderDetail.save()
+        return HttpResponseRedirect("/buyer/user_order/")
+    return render(request, 'buyer/user_order.html', {"order_list":order_list})
+
+def user_order(request):
+    user_id = request.session.get("buyer_id")
+    order_list = Order.objects.filter(order_user_id=user_id)
+    return render(request, 'buyer/user_order.html', locals())
+
 def pay_result(request):
     """
     charset=utf-8
@@ -160,7 +204,11 @@ def pay_result(request):
     seller_id=2088102178922262
     timestamp=2019-07-26+18%3A23%3A26
     """
-    return render(request, 'buyer/pay_result.html', locals())
+    order_id = request.GET.get("out_trade_no")
+    order = Order.objects.get(order_id = order_id)
+    order.order_status = 2
+    order.save()
+    return HttpResponseRedirect("/buyer/user_order/")
 
 def pay_order(request):
     money = request.GET.get("money")

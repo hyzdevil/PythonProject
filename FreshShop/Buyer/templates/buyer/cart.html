@@ -74,7 +74,7 @@
             value++;
             $(this).next().val(value);
             total = value * price;
-            $(this).closest("li").next()[0].childNodes[0].innerHTML = total.toFixed(2)
+            $(this).closest("li").next()[0].childNodes[0].innerHTML = total.toFixed(2);
             getTotal();
         }) ;
         $(".minus").click(function () {

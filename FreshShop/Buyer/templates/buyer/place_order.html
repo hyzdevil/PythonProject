@@ -20,18 +20,19 @@
 	<div class="common_list_con clearfix">
 		<div class="pay_style_con clearfix">
 			<input type="radio" name="pay_style" checked>
+			<label class="zhifubao"></label>
+			<input type="radio" name="pay_style" >
 			<label class="cash">货到付款</label>
 			<input type="radio" name="pay_style">
 			<label class="weixin">微信支付</label>
-			<input type="radio" name="pay_style">
-			<label class="zhifubao"></label>
 			<input type="radio" name="pay_style">
 			<label class="bank">银行卡支付</label>
 		</div>
 	</div>
 
 	<h3 class="common_title">商品列表</h3>
-	
+	<form method="post" action="/buyer/add_order/">
+    {% csrf_token %}
 	<div class="common_list_con clearfix">
 		<ul class="goods_list_th clearfix">
 			<li class="col01">商品名称</li>
@@ -42,12 +43,13 @@
 		</ul>
         {% for cart in content %}
             <ul class="goods_list_td clearfix">
+                <input type="hidden" name="goods_id" value="{{ cart.goods.id }}">
                 <li class="col01">{{ forloop.counter }}</li>
                 <li class="col02"><img src="/static/{{ cart.goods.goods_images }}"></li>
                 <li class="col03">{{ cart.goods.goods_name }}</li>
                 <li class="col04">500g</li>
                 <li class="col05">{{ cart.goods.goods_price }}元</li>
-                <li class="col06">{{ cart.num }}</li>
+                <li class="col06"><input name="number" value="{{ cart.num }}" size="2" style="border: none;pointer-events: none"></li>
                 <li class="col07">{{ cart.total }}元</li>
             </ul>
 		{% endfor %}
@@ -59,12 +61,12 @@
 		<div class="settle_con">
 			<div class="total_goods_count">共<em>{{ content|lenCart }}</em>件商品，总金额<b>{{ content|getTotal }}元</b></div>
 			<div class="transit">运费：<b>10元</b></div>
-			<div class="total_pay">实付款：<b>{{ content|getTotal|addData:10 }}元</b></div>
+			<div class="total_pay">实付款：<b><input name="allTotal" value="{{ content|getTotal|addData:10 }}" size="5" readonly style="pointer-events: none;cursor: text;border: none;color: red">元</b></div>
 		</div>
 	</div>
 
 	<div class="order_submit clearfix">
-		<a href="javascript:;" id="order_btn">提交订单</a>
+		<input type="submit" id="order_btn" value="提交订单">
 	</div>	
-
+    </form>
 {% endblock %}

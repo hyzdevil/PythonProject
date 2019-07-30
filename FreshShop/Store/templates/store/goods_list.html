@@ -32,11 +32,7 @@
                         <td>{{ goods.goods_number }}</td>
                         <td>{{ goods.goods_date|date:"Y-m-d" }}</td>
                         <td>{{ goods.goods_safeDate }}</td>
-                        <td>
-                            {% for store in goods.id|goodsOfstore %}
-                                <p>{{ store.store_name }}</p>
-                            {% endfor %}
-                        </td>
+                        <td>{{ goods.store_id_id|goodsOfstore }}</td>
                         <td>{{ goods.goods_type_id|goodsType }}</td>
                         <td>
                             {% ifequal state "up" %}

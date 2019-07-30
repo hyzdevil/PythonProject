@@ -51,7 +51,7 @@ class Goods(models.Model):
     goods_safeDate = models.IntegerField(verbose_name="保质期")
     goods_status = models.IntegerField(verbose_name="商品状态", default=1)
 
-    store_id = models.ManyToManyField(to=Store, verbose_name="商品店铺")
+    store_id = models.ForeignKey(to=Store, verbose_name="商品店铺", on_delete=models.CASCADE)
     goods_type = models.ForeignKey(to=GoodsType, on_delete=models.CASCADE)
 
 # 商品图片

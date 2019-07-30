@@ -31,9 +31,7 @@
             <tr class="form-group">
                 <th style="text-align: center"><label>上架商铺</label></th>
                 <th colspan="4">
-                    {% for store in goods.id|goodsOfstore %}
-                        {{ store.store_name }}&nbsp;&nbsp;
-                    {% endfor %}
+                    {{ goods.store_id_id|goodsOfstore }}
                 </th>
             </tr>
             <tr class="form-group">
