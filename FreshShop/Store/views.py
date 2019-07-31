@@ -4,8 +4,18 @@ import hashlib
 from django.http import JsonResponse, HttpResponse
 from django.core.paginator import Paginator
 from django.shortcuts import render,HttpResponseRedirect
+from rest_framework import viewsets
 
 from Store.models import *
+from Store.serializers import *
+
+class GoodsViewSet(viewsets.ModelViewSet):
+    queryset = Goods.objects.all()
+    serializer_class = GoodsSerializer
+
+class GoodsTypeViewSet(viewsets.ModelViewSet):
+    queryset = GoodsType.objects.all()
+    serializer_class = GoodsTypeSerializer
 
 # Create your views here.
 """ 地址选择 """
@@ -278,6 +288,8 @@ def del_goodsType(request):
     GoodsType.objects.filter(id=goods_type_id).delete()
     return HttpResponseRedirect(referer)
 
+def ajax_get_list(request):
+    return render(request, 'store/ajax_get_list.html')
 
 # def add(request):
 #     goods_list = [

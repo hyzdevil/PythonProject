@@ -1,0 +1,104 @@
+{% extends 'store/base.html' %}
+{% load setJsonTag %}
+
+{% block title %}
+    <title>商品列表</title>
+{% endblock %}
+
+{% block content %}
+    <!-- Begin Page Content -->
+    {% verbatim myblock %}
+    <div class="container-fluid" id="div">
+        <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">商品列表</h1>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>商品名称</th>
+                    <th>价格(￥)</th>
+                    <th>库存</th>
+                    <th>生产日期</th>
+                    <th>保质期(月)</th>
+                    <th>上架商铺</th>
+                    <th>商品类型</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="goods in goods_list">
+                    <td><a href="#">{{ goods.goods_name }}</a></td>
+                    <td><input type="text" v-bind:value="goods.goods_price"></td>
+                    <td>{{ goods.goods_number }}</td>
+                    <td>{{ goods.goods_date }}</td>
+                    <td>{{ goods.goods_date }}</td>
+                    <td>{{ goods.store_id_id }}</td>
+                    <td>{{ goods.goods_type_id }}</td>
+                    <td>
+                        <a class="btn btn-warning" href="#">下架</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-sm-12 col-md-5">
+                <a class="btn btn-primary" href="/store/add_goods/">添加商品</a>
+            </div>
+            <div class="col-sm-12 col-md-7">
+                <div class="dataTables_paginate paging_simple_numbers">
+                    <ul class="pagination">
+                        <li class="paginate_button page-item" v-for="page_num in page_range">
+                            <a href="#" class="page-link" v-on:click="get_data(page_num)">{{ page_num|add }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endverbatim myblock %}
+
+    <!-- /.container-fluid -->
+{% endblock %}
+{% block script %}
+    <script>
+        Vue.use(VueResource);
+        var vue = new Vue({
+            el:"#div",
+            data:{
+                goods_list:[],
+                page_range:[]
+            },
+            created:function () {
+                this.$http.get("/APIgoods/").then(
+                    function (data) {
+                        this.goods_list = data.data.results;
+                        var page_num = Math.ceil(data.data.count/10);
+                        this.page_range = [...new Array(page_num).keys()];
+                    },
+                    function (error) {
+                        console.log(error)
+                    }
+                )
+            },
+            filters:{
+                add:function (data) {
+                    return parseInt(data)+1
+                }
+            },
+            methods:{
+                get_data:function (page) {
+                    page++;
+                    this.$http.get("/APIgoods/?page="+page).then(
+                    function (data) {
+                        this.goods_list = data.data.results;
+                        var page_num = Math.ceil(data.data.count/10);
+                        this.page_range = [...new Array(page_num).keys()];
+                    },
+                    function (error) {
+                        console.log(error)
+                    }
+                )},
+            }
+        })
+    </script>
+{% endblock %}
