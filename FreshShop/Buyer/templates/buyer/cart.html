@@ -94,6 +94,11 @@
             if(this.className === "check-all check"){
                 $(".check").prop("checked",this.checked)
             }
+            if(this.className === "check-one check"){
+                if(!this.checked){
+                    $(".check-all").prop("checked",false)
+                }
+            }
             getTotal();
         });
     </script>

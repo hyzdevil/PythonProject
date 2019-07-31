@@ -5,7 +5,12 @@
     <title>首页</title>
 {% endblock %}
 {% block style %}
-    <link href="/static/store/css/index.css" rel="stylesheet">
+    <style type="text/css" rel="stylesheet">
+        .yangshi{border: 2px solid #ff0000;}
+        #image{width: 520px; height: 340px;}
+        #box img{width: 70px; height: 50px;}
+        .div{width: 600px;height: 450px;margin: auto;}
+    </style>
 {% endblock %}
 {% block content %}
     <!-- Begin Page Content -->
@@ -124,27 +129,26 @@
             $("#box img:eq(0)").addClass("yangshi");
             function run() {
                 time1 = setInterval(function(){
-                    $("#box>img").removeClass("yangshi");
+                    $("#box img").removeClass("yangshi");
                     if(i>$("#box img").length-1){i = 0;}
                     $("#image").attr("src",$("#box>img:eq("+i+")").attr("src"));
                     $("#box img:eq("+i+")").addClass("yangshi");
                     i++;
                 },1000);
             }
-            $(".box1").mouseover(function () {
+            $("#image").mouseover(function () {
                 window.clearInterval(time1);
             }).mouseout(function () {
-                $("#box2 img").css("display", "none");
                 run();
             });
-            $("#box img").hover(function () {
+            $("#box img").mouseover(function () {
                 window.clearInterval(time1);
                 var src = $(this).attr("src");
                 $("#image").attr("src",src);
                 $("#box img").removeClass("yangshi");
                 $(this).addClass("yangshi");
-            },function () {
-                var index = $("#box>img").index($(this));
+            }).mouseout(function () {
+                var index = $("#box img").index($(this));
                 if(i >= $("#box img").length-1){
                     i = 0;
                 }else {

@@ -18,7 +18,7 @@ def setOrderID(user_id):
     设置订单编号
     时间+用户ID+商品ID+商铺ID
     """
-    strtime = time.strftime("%Y%m%d-%H%M%S", time.localtime())
+    strtime = time.strftime("%Y%m%d%H%M%S", time.localtime())
     return str(user_id)+strtime
 
 def ajaxValid(request, data):
@@ -184,10 +184,56 @@ def add_order(request):
         return HttpResponseRedirect("/buyer/user_order/")
     return render(request, 'buyer/user_order.html', {"order_list":order_list})
 
+@loginValid
 def user_order(request):
     user_id = request.session.get("buyer_id")
     order_list = Order.objects.filter(order_user_id=user_id)
     return render(request, 'buyer/user_order.html', locals())
+
+@loginValid
+def user_center(request):
+    buyer_id = request.session.get("buyer_id")
+    buyer = Buyer.objects.get(id=buyer_id)
+    if request.method == "POST":
+        phone = request.POST.get("phone")
+        province_id = request.POST.get('province')
+        city_id = request.POST.get('city')
+        district_id = request.POST.get('district')
+        province = Area.objects.get(id=province_id)
+        city = Area.objects.get(id=city_id)
+        district = Area.objects.get(id=district_id)
+        detail = request.POST.get('detail')
+        user_address = str(province) + str(city) + str(district) + str(detail)
+        buyer.phone = phone
+        buyer.connect_adress = user_address
+        buyer.save()
+        return HttpResponseRedirect("/buyer/user_center/")
+    return render(request, 'buyer/user_center.html', locals())
+
+def user_site(request):
+    buyer_id = request.session.get("buyer_id")
+    address_list = Address.objects.filter(user_id=buyer_id)
+    if request.method == "POST":
+        rece_name = request.POST.get("rece_name")
+        port_num = request.POST.get("port_num")
+        rece_phone = request.POST.get("rece_phone")
+        province_id = request.POST.get('province')
+        city_id = request.POST.get('city')
+        district_id = request.POST.get('district')
+        province = Area.objects.get(id=province_id)
+        city = Area.objects.get(id=city_id)
+        district = Area.objects.get(id=district_id)
+        detail = request.POST.get('detail')
+        rece_address = str(province) + str(city) + str(district) + str(detail)
+        Address.objects.create(
+            address=rece_address,
+            port_num=port_num,
+            rece_phone=rece_phone,
+            rece_name=rece_name,
+            user_id=buyer_id
+        )
+        return HttpResponseRedirect("/buyer/user_site/")
+    return render(request, 'buyer/user_site.html', locals())
 
 def pay_result(request):
     """

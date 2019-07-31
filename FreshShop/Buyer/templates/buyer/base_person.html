@@ -4,15 +4,18 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>{% block title %}{% endblock %}</title>
-	<link rel="stylesheet" type="text/css" href="/static/buyer/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="/static/buyer/css/main.css">
     {% block style %}
     {% endblock %}
+	<link rel="stylesheet" type="text/css" href="/static/buyer/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/buyer/css/main.css">
+    <script type="text/javascript" src="/static/buyer/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/static/store/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/static/buyer/js/vue.js"></script>
 </head>
 <body>
 	<div class="header_con">
 		<div class="header">
-			<div class="welcome fl">欢迎来到天天生鲜!</div>
+			<div class="welcome fl">欢迎来到天天生鲜!&nbsp;&nbsp;&nbsp;&nbsp;<a href="/buyer/index/">首页</a></div>
 			<div class="fr">
 				<div class="login_btn fl">
                     {% if request.session.buyer_id %}
@@ -27,7 +30,7 @@
 				</div>
 				<div class="user_link fl">
 					<span>|</span>
-					<a href="user_center_info.html">用户中心</a>
+					<a href="/buyer/user_center/">用户中心</a>
 					<span>|</span>
 					<a href="/buyer/cart/">我的购物车</a>
 					<span>|</span>
@@ -71,5 +74,44 @@
 	</div>
 	{% block script %}
 	{% endblock %}
+    <script type="text/javascript">
+        $.get("/store/getProvince/", function (data) {
+            for(var i = 0; i < data.provinces.length; i++){
+                $new = $("<option value="+data.provinces[i][0]+">"+data.provinces[i][1]+"</option>");
+                $("#province").append($new);
+            }
+        });
+        $("#province").change(function () {
+            $("#city").empty().append('<option value="">请选择城市</option>');
+            $("#district").empty().append('<option value="">请选择区/县</option>');
+            $.ajax({
+                url: "/store/getCity/",
+                type:'get',
+                data:{
+                    "city_id":$(this).val()
+                }
+            }).done(function (data) {
+                for(var i = 0;i < data.cities.length; i++){
+                    $new = $("<option value="+data.cities[i][0]+">"+data.cities[i][1]+"</option>");
+                    $("#city").append($new);
+                }
+            });
+        });
+        $("#city").change(function () {
+            $("#district").empty().append('<option value="">请选择区/县</option>');
+            $.ajax({
+                url:'/store/getDistrict/',
+                type:'get',
+                data:{
+                    "district_id":$(this).val()
+                }
+            }).done(function (data) {
+                for(var i = 0;i < data.district.length; i++){
+                    $new = $("<option value="+data.district[i][0]+">"+data.district[i][1]+"</option>");
+                    $("#district").append($new);
+                }
+            });
+        });
+    </script>
 </body>
 </html>

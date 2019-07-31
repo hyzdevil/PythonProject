@@ -1,82 +1,83 @@
 {% extends 'buyer/base_person.html' %}
+{% load setJsonTag %}
 
 {% block title %}
-    个人中心
+    {{ request.COOKIES.username|deserialization }}--个人中心
+{% endblock %}
+{% block style %}
+{#    <link rel="stylesheet" href="/static/store/css/sb-admin-2.min.css">#}
 {% endblock %}
 {% block content %}
 	<div class="main_con clearfix">
 		<div class="left_menu_con clearfix">
 			<h3>用户中心</h3>
 			<ul>
-				<li><a href="user_center_info.html" class="active">· 个人信息</a></li>
+				<li><a href="/buyer/user_center/" class="active">· 个人信息</a></li>
 				<li><a href="/buyer/user_order/">· 全部订单</a></li>
-				<li><a href="user_center_site.html">· 收货地址</a></li>
+				<li><a href="/buyer/user_site/">· 收货地址</a></li>
 			</ul>
 		</div>
 		<div class="right_content clearfix">
-				<div class="info_con clearfix">
-				<h3 class="common_title2">基本信息</h3>
-						<ul class="user_info_list">
-							<li><span>用户名：</span>18210569700</li>
-							<li><span>联系方式：</span>18210569700</li>
-							<li><span>联系地址：</span>北京市昌平区</li>			
-						</ul>
-				</div>
-				
-				<h3 class="common_title2">最近浏览</h3>
-				<div class="has_view_list">
-					<ul class="goods_type_list clearfix">
-				<li>
-					<a href="detail.html"><img src="images/goods/goods003.jpg"></a>
-					<h4><a href="detail.html">大兴大棚草莓</a></h4>
-					<div class="operate">
-						<span class="prize">￥16.80</span>
-						<span class="unit">16.80/500g</span>
-						<a href="#" class="add_goods" title="加入购物车"></a>
-					</div>
-				</li>
-
-				<li>
-					<a href="#"><img src="images/goods/goods004.jpg"></a>
-					<h4><a href="#">吐鲁番梨光杏</a></h4>
-					<div class="operate">
-						<span class="prize">￥5.50</span>
-						<span class="unit">5.50/500g</span>
-						<a href="#" class="add_goods" title="加入购物车"></a>
-					</div>
-				</li>
-
-				<li>
-					<a href="#"><img src="images/goods/goods005.jpg"></a>
-					<h4><a href="#">黄肉桃</a></h4>
-					<div class="operate">
-						<span class="prize">￥10.00</span>
-						<span class="unit">10.00/500g</span>
-						<a href="#" class="add_goods" title="加入购物车"></a>
-					</div>
-				</li>
-
-				<li>
-					<a href="#"><img src="images/goods/goods006.jpg"></a>
-					<h4><a href="#">进口西梅</a></h4>
-					<div class="operate">
-						<span class="prize">￥28.80</span>
-						<span class="unit">28.8/500g</span>
-						<a href="#" class="add_goods" title="加入购物车"></a>
-					</div>
-				</li>
-
-				<li>
-					<a href="#"><img src="images/goods/goods007.jpg"></a>
-					<h4><a href="#">香梨</a></h4>
-					<div class="operate">
-						<span class="prize">￥6.45</span>
-						<span class="unit">6.45/500g</span>
-						<a href="#" class="add_goods" title="加入购物车"></a>
-					</div>
-				</li>
-			</ul>
-		</div>
-		</div>
+            <div class="info_con clearfix">
+                <h3 class="common_title2">基本信息</h3>
+                <ul class="user_info_list">
+                    <li><span>用户名：</span>{{ buyer.username }}</li>
+                    <li><span>联系手机：</span>{{ buyer.phone|isNone }}</li>
+                    <li><span>联系邮箱：</span>{{ buyer.email }}</li>
+                    <li><span>联系地址：</span>{{ buyer.connect_adress|isNone }}</li>
+                </ul>
+                {% if buyer|userInfo %}
+                    <div class="common_title2">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">完善个人信息</button>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
 	</div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">个人信息</h4>
+{#                    <button type="button" class="close" data-dismiss="model" aria-label="Close">#}
+                    <button type="button" class="close" aria-label="Close">
+{#                        <span aria-hidden="true">×</span>#}
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="/buyer/user_center/" class="form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <table>
+                            <tr class="form-group">
+                                <td><label>联系手机：</label></td>
+                                <td><input type="text" class="form-control" name="phone"></td>
+                            </tr>
+                            <tr class="form-group">
+                                <td><label>联系地址：</label></td>
+                                <td>
+                                    <select name="province" id="province">
+                                        <option value="">请选择省份</option>
+                                    </select>--
+                                    <select name="city" id="city">
+                                        <option value="">请选择城市</option>
+                                    </select>--
+                                    <select name="district" id="district">
+                                        <option value="">请选择区/县</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="form-group">
+                                <td></td>
+                                <td><textarea cols="50" name="detail" placeholder="请输入详细地址"></textarea></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}

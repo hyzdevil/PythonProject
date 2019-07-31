@@ -14,6 +14,8 @@ urlpatterns = [
     path('place_order/', views.place_order),
     path('add_order/', views.add_order),
     path('user_order/', views.user_order),
+    path('user_center/', views.user_center),
+    path('user_site/', views.user_site),
 ]
 urlpatterns += [
     re_path(r'^ajaxValid/(?P<data>\w+)/$', views.ajaxValid),
