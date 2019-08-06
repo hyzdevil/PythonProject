@@ -24,4 +24,5 @@ urlpatterns = [
 urlpatterns += [
     # path('add/', views.add),
     path('agl/', views.ajax_get_list),
+    path('get_data/', views.get_data),
 ]

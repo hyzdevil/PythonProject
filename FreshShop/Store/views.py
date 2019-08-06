@@ -5,6 +5,7 @@ from django.http import JsonResponse, HttpResponse
 from django.core.paginator import Paginator
 from django.shortcuts import render,HttpResponseRedirect
 from rest_framework import viewsets
+from django_filters.rest_framework import DjangoFilterBackend
 
 from Store.models import *
 from Store.serializers import *
@@ -12,6 +13,8 @@ from Store.serializers import *
 class GoodsViewSet(viewsets.ModelViewSet):
     queryset = Goods.objects.all()
     serializer_class = GoodsSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['goods_name']
 
 class GoodsTypeViewSet(viewsets.ModelViewSet):
     queryset = GoodsType.objects.all()
@@ -290,6 +293,11 @@ def del_goodsType(request):
 
 def ajax_get_list(request):
     return render(request, 'store/ajax_get_list.html')
+
+from CeleryTask.tasks import add
+def get_data(request):
+    add.delay(2,3)
+    return JsonResponse({"status":"200"})
 
 # def add(request):
 #     goods_list = [

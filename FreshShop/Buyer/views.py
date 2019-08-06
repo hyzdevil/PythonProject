@@ -6,7 +6,7 @@ from django.http import JsonResponse, HttpResponse
 from django.shortcuts import HttpResponseRedirect
 
 from Buyer.models import *
-from Store.models import *
+from Store.models import GoodsType
 from Store.views import setPassword
 
 from alipay import AliPay
@@ -92,6 +92,9 @@ def logout(request):
     request.session.flush()
     return response
 
+from django.views.decorators.cache import cache_page
+
+@cache_page(60*15)
 def goods_list(request):
     goodsLidt = []
     type_id = request.GET.get("type_id")
