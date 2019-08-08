@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>student</title>
-</head>
-<body>
-    <table border="1">
+{% extends 'blank.html' %}
+
+{% block title %}
+    <title>学员列表</title>
+{% endblock %}
+{% block content %}
+    <table class="table">
         <thead>
             <tr>
                 <th>姓名</th>
                 <th>性别</th>
-                <th>年龄</th>
             </tr>
         </thead>
         <tbody>
@@ -18,10 +16,8 @@
             <tr>
                 <td>{{ student.name }}</td>
                 <td>{{ student.gender }}</td>
-                <td>{{ student.age }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-</body>
-</html>
+{% endblock %}

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Demo" uuid="09389e2d-04b4-4b1f-8122-649de31d6490">
+    <data-source source="LOCAL" name="student" uuid="a4728243-483c-4c24-9eaa-3f7c6d763d3f">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:E:\DjangoProject\PythonProject\FlaskProject\Demo.sqlite</jdbc-url>
+      <jdbc-url>jdbc:sqlite:E:\DjangoProject\PythonProject\FlaskProject\FlaskDirtory\student.sqlite</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>
