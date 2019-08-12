@@ -1,16 +1,16 @@
-from FlaskDirtory.main import models
-
-db = models.session
+from app import models
 
 class BaseModel(models.Model):
     __abstract__ = True
     id = models.Column(models.Integer, primary_key=True, autoincrement=True)
 
     def save(self):
+        db = models.session
         db.add(self)
         db.commit()
 
     def delete_obj(self):
+        db = models.session
         db.delete(self)
         db.commit()
 
@@ -18,7 +18,7 @@ class User(BaseModel):
     __tablename__ = "user"
     username = models.Column(models.String(32))
     password = models.Column(models.Integer)
-    identify = models.Column(models.Integer)
+    identify = models.Column(models.Integer) # 0 为教师，1 为学员
     identify_id = models.Column(models.Integer,default=0)
 
 class Students(BaseModel):
@@ -26,9 +26,14 @@ class Students(BaseModel):
     __tablename__ = "students"
     name = models.Column(models.String(32))
     gender = models.Column(models.Integer)
+    birthday = models.Column(models.Date)
 
     to_attendance = models.relationship(
         "Attendance",
+        backref="to_students"
+    )
+    to_sorce = models.relationship(
+        "Sorce",
         backref="to_students"
     )
 
@@ -56,6 +61,10 @@ class Course(BaseModel):
         "Teachers",
         backref = "to_course"
     )
+    to_sorce = models.relationship(
+        "Sorce",
+        backref="to_course"
+    )
     to_student = models.relationship(
         "Students",
         secondary = Stu_Cou,
@@ -76,8 +85,6 @@ class Teachers(BaseModel):
     __tablename__ = "teachers"
     name = models.Column(models.String(32))
     gender = models.Column(models.Integer)
+    birthday = models.Column(models.Date)
 
     course_id = models.Column(models.Integer,models.ForeignKey('course.id'))
-
-# models.drop_all()
-# models.create_all()

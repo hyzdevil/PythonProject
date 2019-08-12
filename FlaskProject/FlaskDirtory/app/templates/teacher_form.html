@@ -1,0 +1,26 @@
+{% extends 'blank.html' %}
+
+{% block title %}
+    <title>教师注册</title>
+{% endblock %}
+{% block content %}
+    <form class="user" method="post" action="/teacher_form/">
+        <table style="margin: auto">
+            <tr class="form-group">
+                <th>姓名：</th>
+                <td>{{ teacher_form.name }}</td>
+            </tr>
+            <tr class="form-group">
+                <th>性别：</th>
+                <td>{{ teacher_form.gender }}</td>
+            </tr>
+            <tr class="form-group">
+                <th>课程：</th>
+                <td>{{ teacher_form.course }}</td>
+            </tr>
+            <tr class="form-group">
+                <td colspan="2"><input class="btn btn-primary btn-block" type="submit" value="提交"></td>
+            </tr>
+        </table>
+    </form>
+{% endblock %}

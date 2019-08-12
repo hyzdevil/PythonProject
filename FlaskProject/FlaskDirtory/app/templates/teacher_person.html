@@ -1,0 +1,76 @@
+{% extends 'blank.html' %}
+
+{% block title %}
+    <title>个人首页</title>
+{% endblock %}
+
+{% block content %}
+    {% if result.flag %}
+        <table>
+            <tr>
+                <th>姓名：</th>
+                <td>{{ teacher.name }}</td>
+            </tr>
+            <tr>
+                <th>性别：</th>
+                <td>{{ teacher.gender }}</td>
+            </tr>
+            <tr>
+                <th>出生日期：</th>
+                <td>{{ teacher.birthday }}</td>
+            </tr>
+            <tr>
+                <th>教授课程：</th>
+                <td>{{ teacher.to_course.name }}</td>
+            </tr>
+        </table>
+    {% else %}
+        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#personModal">
+            完善个人信息
+        </a>
+    {% endif %}
+    <div class="modal fade" id="personModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">个人信息</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form method="post" action="/add_teacher/">
+                    {{ teacher_form.csrf_token }}
+                    <div class="modal-body">
+                        <table>
+                            <tr class="form-group">
+                                <th>{{ teacher_form.name.label }}：</th>
+                                <td>{{ teacher_form.name }}</td>
+                            </tr>
+                            <tr class="form-group">
+                                <th>{{ teacher_form.gender.label }}：</th>
+                                <td>{{ teacher_form.gender }}</td>
+                            </tr>
+                            <tr class="form-group">
+                                <th>{{ teacher_form.birthday.label }}：</th>
+                                <td>{{ teacher_form.birthday }}</td>
+                            </tr>
+                            <tr class="form-group">
+                                <th>教授课程：</th>
+                                <td>
+                                    <select name="course_id">
+                                        {% for cou in course %}
+                                            <option class="form-control" value="{{ cou.id }}">{{ cou.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="保存">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

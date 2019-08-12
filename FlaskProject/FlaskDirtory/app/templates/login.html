@@ -28,10 +28,16 @@
                                 </div>
                                 <form class="user" method="post" action="/login/">
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" name="username" placeholder="用户名">
+                                        <input type="text" class="form-control" name="username" placeholder="用户名">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" name="password" placeholder="密码">
+                                        <input type="password" class="form-control" name="password" placeholder="密码">
+                                    </div>
+                                    <div class="form-group">
+                                        <select class="form-control" name="identify">
+                                            <option class="form-control" value="1">教师</option>
+                                            <option class="form-control" value="0">学员</option>
+                                        </select>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0" style="color: red">
